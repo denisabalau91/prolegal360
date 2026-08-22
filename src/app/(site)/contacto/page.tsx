@@ -10,13 +10,15 @@ import {
   IconoUbicacion,
 } from '@/components/ui/icons';
 import { MARCA, urlWhatsApp } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/contacto/contacto.module.css';
 
-export const metadata: Metadata = {
-  title: `Contacto | ${MARCA.nombre}`,
-  description:
-    'Reserva 20 minutos gratis con un asesor. Una llamada de diagnóstico, sin compromiso y sin discurso comercial.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Contacto con abogados y asesores de empresas',
+  descripcion:
+    'Habla con un abogado o asesor de empresas. Reserva una llamada de diagnóstico de 20 minutos, sin compromiso.',
+  ruta: '/contacto',
+});
 
 const PASOS_DESPUES: string[] = [
   'Te llamamos en menos de 24 horas laborables.',

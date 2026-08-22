@@ -3,15 +3,18 @@ import { CheckList } from '@/components/features/CheckList';
 import { FormularioRecurso } from '@/components/features/FormularioRecurso';
 import { CtaFinal, PageHero, Section, SectionHeader } from '@/components/features/blocks';
 import { IconoDescarga } from '@/components/ui/icons';
-import { MARCA } from '@/core/domain/site';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/recursos/recursos.module.css';
 
-export const metadata: Metadata = {
-  title: `Recursos gratuitos | ${MARCA.nombre}`,
-  description:
-    'Documentos útiles para tu empresa, gratis. Las mismas guías que usamos internamente con nuestros clientes.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Recursos fiscales y laborales para empresas',
+  descripcion:
+    'Guías y documentos prácticos para empresas: checklist de cierre fiscal, documentación y ajustes tributarios explicados con claridad.',
+  ruta: '/recursos',
+  imagen: '/images/hero-recursos.jpg',
+  imagenAlt: 'Recursos fiscales y laborales para empresas de PROLEGAL360',
+});
 
 const PUNTOS_CHECKLIST: string[] = [
   'Los 15 documentos que tu asesoría necesita para cerrar el ejercicio',
@@ -119,6 +122,10 @@ export default function RecursosPage() {
             <img
               src={conBasePath('/images/hero-recursos.jpg')}
               alt="Documentación contable preparada para el cierre fiscal"
+              width={1200}
+              height={689}
+              loading="lazy"
+              decoding="async"
               className={styles.imagen}
             />
           </div>

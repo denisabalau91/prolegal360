@@ -3,15 +3,18 @@ import { CheckList } from '@/components/features/CheckList';
 import { CtaFinal, PageHero, Section, SectionHeader } from '@/components/features/blocks';
 import { ButtonLink } from '@/components/ui/Button';
 import { IconoFlechaDerecha } from '@/components/ui/icons';
-import { MARCA } from '@/core/domain/site';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/sectores/sectores.module.css';
 
-export const metadata: Metadata = {
-  title: `Sectores | ${MARCA.nombre}`,
-  description:
-    'Trabajamos sobre todo con cuatro sectores intensivos en mano de obra: hostelería, construcción, comercio y seguridad y limpieza.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Asesoría para empresas por sectores',
+  descripcion:
+    'Asesoría laboral, fiscal y jurídica para hostelería, construcción, comercio, seguridad y limpieza en toda España.',
+  ruta: '/sectores',
+  imagen: '/images/sector-construccion.jpg',
+  imagenAlt: 'Asesoría especializada para empresas por sectores',
+});
 
 interface Sector {
   id: string;
@@ -110,6 +113,10 @@ export default function SectoresPage() {
                 <img
                   src={conBasePath(sector.imagen)}
                   alt={sector.imagenAlt}
+                  width={1200}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
                   className={styles.imagen}
                 />
               </figure>

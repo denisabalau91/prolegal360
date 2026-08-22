@@ -2,12 +2,15 @@ import type { Metadata } from 'next';
 import { PaginaLegal, type ApartadoLegal } from '@/components/features/PaginaLegal';
 import { PageHero, Section } from '@/components/features/blocks';
 import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 
-export const metadata: Metadata = {
-  title: `Aviso legal | ${MARCA.nombre}`,
-  description:
-    'Información general sobre el titular de este sitio web y las condiciones de uso conforme a la LSSI-CE.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Aviso legal',
+  descripcion:
+    'Información general sobre el titular de este sitio web y sus condiciones de uso conforme a la LSSI-CE.',
+  ruta: '/aviso-legal',
+  noIndex: true,
+});
 
 const APARTADOS: ApartadoLegal[] = [
   {

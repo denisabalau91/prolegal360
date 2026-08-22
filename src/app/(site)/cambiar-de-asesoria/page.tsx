@@ -9,15 +9,16 @@ import {
   IconoEscudoCheck,
   IconoFlechasIntercambio,
 } from '@/components/ui/icons';
-import { MARCA } from '@/core/domain/site';
 import { PASOS } from '@/core/domain/home-content';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/cambiar-de-asesoria/cambiar.module.css';
 
-export const metadata: Metadata = {
-  title: `Cambiar de asesoría | ${MARCA.nombre}`,
-  description:
-    'El traspaso lo gestionamos nosotros, es gratuito y hay un mes de solapamiento sin coste. Tú solo tienes que decidirlo.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Cambiar de asesoría sin coste para tu empresa',
+  descripcion:
+    'Cambia de asesoría sin interrumpir la gestión de tu empresa: traspaso gratuito y un mes de solapamiento sin coste.',
+  ruta: '/cambiar-de-asesoria',
+});
 
 interface Ventaja {
   Icono: ComponentType<SVGProps<SVGSVGElement>>;

@@ -19,6 +19,8 @@ export function Logo({ conSello = true, claro = false }: LogoProps) {
           src={conBasePath('/images/logo-prolegal360.png')}
           alt=""
           aria-hidden="true"
+          width={500}
+          height={500}
           className={styles.marca}
         />
         <span className={styles.textos}>

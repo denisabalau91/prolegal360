@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import { CalculadoraCuota } from '@/components/features/CalculadoraCuota';
 import { CtaFinal, PageHero, Section } from '@/components/features/blocks';
-import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 
-export const metadata: Metadata = {
-  title: `Calculadora de cuota | ${MARCA.nombre}`,
-  description:
-    'Calcula tu cuota en 1 minuto, sin registro y sin dejar tus datos. Tres preguntas y ves el desglose completo.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Calculadora de precios de asesoría para empresas',
+  descripcion:
+    'Calcula en un minuto el precio de tu asesoría laboral, fiscal y jurídica. Resultado inmediato, sin registro y sin dejar tus datos.',
+  ruta: '/calculadora',
+});
 
 export default function CalculadoraPage() {
   return (

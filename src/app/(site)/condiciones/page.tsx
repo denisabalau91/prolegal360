@@ -2,12 +2,15 @@ import type { Metadata } from 'next';
 import { PaginaLegal, type ApartadoLegal } from '@/components/features/PaginaLegal';
 import { PageHero, Section } from '@/components/features/blocks';
 import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 
-export const metadata: Metadata = {
-  title: `Condiciones de contratación | ${MARCA.nombre}`,
-  description:
-    'Condiciones generales aplicables a la contratación de los planes LABORAL, FISCAL, JURÍDICO y 360 INTEGRAL.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Condiciones de contratación',
+  descripcion:
+    'Condiciones generales de contratación de los planes laboral, fiscal, jurídico y 360 Integral de PROLEGAL360 Asesores.',
+  ruta: '/condiciones',
+  noIndex: true,
+});
 
 const APARTADOS: ApartadoLegal[] = [
   {

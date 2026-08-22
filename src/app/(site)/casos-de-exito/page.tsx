@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import { Testimonios } from '@/components/features/Testimonios';
 import { CtaFinal, PageHero, Section, SectionHeader } from '@/components/features/blocks';
-import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/casos-de-exito/casos.module.css';
 
-export const metadata: Metadata = {
-  title: `Casos de éxito | ${MARCA.nombre}`,
-  description:
-    'Cuatro casos reales de clientes, con la situación de partida, lo que hicimos y cómo acabó.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Casos de éxito de asesoría para empresas',
+  descripcion:
+    'Casos de empresas ante inspecciones, despidos y cambios de asesoría: situación inicial, trabajo realizado y resultado obtenido.',
+  ruta: '/casos-de-exito',
+});
 
 interface Caso {
   numero: string;

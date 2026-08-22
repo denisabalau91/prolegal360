@@ -10,15 +10,19 @@ import {
 } from '@/components/features/blocks';
 import { ButtonLink } from '@/components/ui/Button';
 import { IconoEscudoCheck, IconoReloj, IconoUsuarios } from '@/components/ui/icons';
-import { MARCA, PLANES } from '@/core/domain/site';
+import { PLANES } from '@/core/domain/site';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/components/features/servicio.module.css';
 
-export const metadata: Metadata = {
-  title: `Asesoría laboral | ${MARCA.nombre}`,
-  description:
-    'Nóminas, seguros sociales, contratos y toda la relación con la Seguridad Social. Desde 45 €/mes + 12 € por nómina.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Asesoría laboral para empresas en España',
+  descripcion:
+    'Gestión laboral para empresas y autónomos con plantilla: nóminas, contratos, altas, bajas y Seguridad Social. Desde 45 €/mes.',
+  ruta: '/asesoria-laboral',
+  imagen: '/images/hero-asesoria-laboral.jpg',
+  imagenAlt: 'Asesoría laboral para empresas de PROLEGAL360',
+});
 
 const PLAN_LABORAL = PLANES.find((plan) => plan.id === 'laboral')!;
 
@@ -131,7 +135,7 @@ export default function AsesoriaLaboralPage() {
               size="lg"
               className={styles.botonBannerPrimario}
             >
-              Ver el departamento jurídico
+              Consultar al abogado laboral
             </ButtonLink>
             <ButtonLink href="/precios" size="lg" variant="outline">
               Ver el plan 360 INTEGRAL

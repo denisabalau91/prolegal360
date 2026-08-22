@@ -50,9 +50,9 @@ export const PILARES: Pilar[] = [
     href: '/asesoria-fiscal',
   },
   {
-    nombre: 'JURÍDICO',
+    nombre: 'ABOGADO LABORAL',
     descripcion:
-      'Un abogado propio dentro de tu cuota. Cuando llega el problema, lo llevamos nosotros desde el minuto uno.',
+      'Defensa laboral para empresas ante despidos, inspecciones y conciliaciones en toda España.',
     precio: 'desde 39 €',
     precioSufijo: '/mes',
     precioExtra: '1.er mes gratis',

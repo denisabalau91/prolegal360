@@ -67,7 +67,16 @@ export function PageHero({ antetitulo, titulo, descripcion, imagen, acciones }: 
       {imagen && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imagen} alt="" aria-hidden="true" className={styles.pageHeroImagen} />
+          <img
+            src={imagen}
+            alt=""
+            aria-hidden="true"
+            width={1600}
+            height={1067}
+            fetchPriority="high"
+            decoding="async"
+            className={styles.pageHeroImagen}
+          />
           <div className={styles.pageHeroDegradado} />
         </>
       )}

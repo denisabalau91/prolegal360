@@ -14,8 +14,14 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
   text-align: left;
   transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.boton::-webkit-details-marker {
+  display: none;
 }
 
 .boton:hover {
@@ -32,12 +38,20 @@
 .icono {
   margin-top: 0.125rem;
   flex-shrink: 0;
+  width: 1rem;
+  text-align: center;
   color: var(--accent);
 }
 
-.iconoSvg {
-  width: 1rem;
-  height: 1rem;
+.icono::before {
+  content: '+';
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.item[open] .icono::before {
+  content: '−';
 }
 
 .respuesta {

@@ -4,15 +4,16 @@ import { CalculadoraCuota } from '@/components/features/CalculadoraCuota';
 import { Faq } from '@/components/features/Faq';
 import { PlanesPrecios } from '@/components/features/PlanesPrecios';
 import { CtaFinal, PageHero, Section, SectionHeader } from '@/components/features/blocks';
-import { MARCA } from '@/core/domain/site';
 import { FAQS_HOME } from '@/core/domain/home-content';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/precios/precios.module.css';
 
-export const metadata: Metadata = {
-  title: `Precios | ${MARCA.nombre}`,
-  description:
-    'Nuestras tarifas, completas y a la vista. Sin formulario, sin registro y sin llamada previa.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Precios de asesoría laboral, fiscal y jurídica',
+  descripcion:
+    'Consulta precios de asesoría laboral, fiscal y jurídica para empresas. Tarifas publicadas, sin permanencia y calculadora inmediata.',
+  ruta: '/precios',
+});
 
 interface FilaTarifa {
   concepto: string;

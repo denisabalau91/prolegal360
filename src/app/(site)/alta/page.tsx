@@ -3,14 +3,16 @@ import { Suspense } from 'react';
 import { FormularioAlta } from '@/components/features/FormularioAlta';
 import { PageHero, Section } from '@/components/features/blocks';
 import { IconoCheck } from '@/components/ui/icons';
-import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/alta/alta.module.css';
 
-export const metadata: Metadata = {
-  title: `Formulario de alta | ${MARCA.nombre}`,
-  description:
-    'Rellena los datos de tu empresa y en menos de 24 horas laborables te enviamos la hoja de encargo con el precio cerrado.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Formulario de alta de cliente',
+  descripcion:
+    'Rellena los datos de tu empresa y recibe la hoja de encargo con el servicio y el precio cerrado.',
+  ruta: '/alta',
+  noIndex: true,
+});
 
 const GARANTIAS: string[] = [
   'Traspaso gratuito desde tu asesoría actual',

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
+import type { ComponentType, SVGProps } from 'react';
 import { CheckList } from '@/components/features/CheckList';
+import { Faq } from '@/components/features/Faq';
+import { DatosEstructurados } from '@/components/seo/DatosEstructurados';
 import {
   CtaFinal,
   HeroPrecio,
@@ -7,17 +10,28 @@ import {
   Section,
   SectionHeader,
 } from '@/components/features/blocks';
-import { IconoInsigniaCheck, IconoRegalo } from '@/components/ui/icons';
-import { MARCA, PLANES } from '@/core/domain/site';
+import { ButtonLink } from '@/components/ui/Button';
+import {
+  IconoDocumentoAlerta,
+  IconoEscudoAlerta,
+  IconoInsigniaCheck,
+  IconoInstitucion,
+  IconoRegalo,
+} from '@/components/ui/icons';
+import { MARCA, PLANES, type FaqItem } from '@/core/domain/site';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata, urlCanonica } from '@/utils/seo';
 import servicio from '@/components/features/servicio.module.css';
 import styles from '@/app/(site)/departamento-juridico/juridico.module.css';
 
-export const metadata: Metadata = {
-  title: `Departamento jurídico | ${MARCA.nombre}`,
-  description:
-    'Un departamento jurídico propio, dentro de tu cuota mensual. Desde 39 €/mes con el primer mes gratuito.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Abogado laboral para empresas en España',
+  descripcion:
+    'Abogado laboral para empresas de toda España: despidos, sanciones, inspecciones, requerimientos y conciliaciones. Plan desde 39 €/mes.',
+  ruta: '/departamento-juridico',
+  imagen: '/images/hero-departamento-juridico.jpg',
+  imagenAlt: 'Abogado laboral para empresas de PROLEGAL360',
+});
 
 const PLAN_JURIDICO = PLANES.find((plan) => plan.id === 'juridico')!;
 
@@ -27,6 +41,109 @@ const NO_INCLUYE: string[] = [
   'Costas procesales impuestas por el juzgado',
   'Peritajes y honorarios de procurador',
 ];
+
+interface AreaLaboral {
+  Icono: ComponentType<SVGProps<SVGSVGElement>>;
+  titulo: string;
+  texto: string;
+}
+
+const AREAS_LABORALES: AreaLaboral[] = [
+  {
+    Icono: IconoDocumentoAlerta,
+    titulo: 'Despidos y sanciones',
+    texto:
+      'Preparamos la estrategia, la carta y el cálculo económico para reducir errores antes de comunicar la decisión.',
+  },
+  {
+    Icono: IconoEscudoAlerta,
+    titulo: 'Inspección de Trabajo',
+    texto:
+      'Revisamos el requerimiento, ordenamos la documentación y redactamos las alegaciones dentro de plazo.',
+  },
+  {
+    Icono: IconoInstitucion,
+    titulo: 'Conciliación y reclamaciones',
+    texto:
+      'Analizamos la papeleta, valoramos el riesgo y asistimos al acto de conciliación laboral con la empresa.',
+  },
+];
+
+const PASOS_COBERTURA_NACIONAL: string[] = [
+  'Primera revisión por videollamada o teléfono, con documentación compartida de forma digital',
+  'Análisis del convenio colectivo y de la normativa aplicable en cada provincia',
+  'Respuesta y presupuesto por escrito antes de cualquier actuación fuera de la cuota',
+  'Coordinación de las actuaciones presenciales cuando el asunto lo requiera',
+];
+
+const FAQS_ABOGADO_LABORAL: FaqItem[] = [
+  {
+    pregunta: '¿Atendéis a empresas de toda España?',
+    respuesta:
+      'Sí. La consulta, el análisis del expediente y la preparación de documentos se realizan de forma digital para empresas de toda España. Si una actuación exige presencia física, confirmamos antes la disponibilidad y su presupuesto según la provincia.',
+  },
+  {
+    pregunta: '¿El servicio está pensado para empresas o para trabajadores?',
+    respuesta:
+      'Los planes publicados están diseñados para empresas, autónomos empleadores y responsables de recursos humanos. Defendemos sus decisiones laborales y coordinamos la gestión preventiva con la asesoría laboral.',
+  },
+  {
+    pregunta: '¿Qué asuntos lleva un abogado laboral para empresas?',
+    respuesta:
+      'Entre otros, despidos, sanciones, reclamaciones de cantidad, modificaciones de condiciones, inspecciones de trabajo, negociación previa y actos de conciliación. Primero revisamos el caso para confirmar alcance, plazo y estrategia.',
+  },
+  {
+    pregunta: '¿Los procedimientos judiciales están incluidos en la cuota?',
+    respuesta:
+      'No. Las demandas, vistas y recursos se presupuestan aparte, por escrito y antes de empezar. Los clientes del plan jurídico reciben un 30 % de descuento sobre esas actuaciones profesionales.',
+  },
+  {
+    pregunta: '¿Cuánto cuesta el abogado laboral para la empresa?',
+    respuesta:
+      'El plan jurídico recurrente parte de 39 € al mes para autónomos sin plantilla y aumenta por tramos de trabajadores. Las actuaciones puntuales y judiciales se valoran por separado con precio cerrado.',
+  },
+];
+
+const DATOS_ESTRUCTURADOS_ABOGADO_LABORAL: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${urlCanonica('/departamento-juridico')}#servicio`,
+      name: 'Abogado laboral para empresas en España',
+      serviceType: 'Asesoramiento y defensa laboral para empresas',
+      url: urlCanonica('/departamento-juridico'),
+      provider: {
+        '@id': `${MARCA.url}/#organization`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'España',
+      },
+      audience: {
+        '@type': 'BusinessAudience',
+        audienceType: 'Empresas y autónomos empleadores',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: urlCanonica('/'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Abogado laboral para empresas',
+          item: urlCanonica('/departamento-juridico'),
+        },
+      ],
+    },
+  ],
+};
 
 interface TramoJuridico {
   plantilla: string;
@@ -50,10 +167,14 @@ const TARIFA_JURIDICA: TramoJuridico[] = [
 export default function DepartamentoJuridicoPage() {
   return (
     <>
+      <DatosEstructurados
+        id="datos-estructurados-abogado-laboral"
+        datos={DATOS_ESTRUCTURADOS_ABOGADO_LABORAL}
+      />
       <PageHero
-        antetitulo="Pilar jurídico"
-        titulo="Un departamento jurídico propio, dentro de tu cuota mensual"
-        descripcion="No derivamos a un abogado externo ni te pasamos un teléfono. Cuando llega el problema lo lleva nuestra abogada, desde el minuto uno y con el precio ya cerrado."
+        antetitulo="Abogado laboral para empresas"
+        titulo="Abogado laboral para empresas en toda España"
+        descripcion="Asesoramiento preventivo y defensa ante despidos, sanciones, inspecciones y conciliaciones. Tu empresa trata directamente con una abogada laboralista, con alcance y precio definidos por escrito."
         imagen={conBasePath('/images/hero-departamento-juridico.jpg')}
         acciones={
           <HeroPrecio
@@ -84,12 +205,33 @@ export default function DepartamentoJuridicoPage() {
       </div>
 
       <Section fondo="base">
+        <SectionHeader
+          antetitulo="Derecho laboral de empresa"
+          titulo="Intervenimos antes, durante y después del conflicto laboral"
+          descripcion="Una decisión laboral bien preparada evita costes, plazos perdidos y posiciones difíciles de defender. Revisamos el expediente y dejamos por escrito el siguiente paso."
+        />
+        <div className={servicio.rejillaTres}>
+          {AREAS_LABORALES.map(({ Icono, titulo, texto }) => (
+            <article key={titulo} className={servicio.tarjetaProceso}>
+              <Icono className={servicio.iconoProceso} />
+              <h3 className={servicio.tituloProceso}>{titulo}</h3>
+              <p className={servicio.textoProceso}>{texto}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section fondo="arena">
         <div className={servicio.rejillaAbogada}>
           <figure className={servicio.fichaFoto}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={conBasePath('/images/equipo-elena-vidal.jpg')}
               alt="Elena Vidal Aparicio, Abogada · Responsable del departamento jurídico"
+              width={600}
+              height={899}
+              loading="lazy"
+              decoding="async"
               className={servicio.fotoAbogada}
             />
             <figcaption className={servicio.pieFoto}>
@@ -130,6 +272,25 @@ export default function DepartamentoJuridicoPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section fondo="base">
+        <div className={servicio.rejillaDos}>
+          <div>
+            <SectionHeader
+              antetitulo="Cobertura nacional"
+              titulo="Asesoramiento laboral para empresas de toda España"
+              descripcion="Trabajamos a distancia con expedientes digitales y estudiamos el convenio colectivo que corresponde a cada centro de trabajo. La cobertura nacional no significa aplicar una respuesta genérica: cada provincia, sector y plantilla puede exigir un análisis distinto."
+            />
+            <ButtonLink href="/contacto" size="lg">
+              Consultar mi caso laboral
+            </ButtonLink>
+          </div>
+          <div className={servicio.tarjetaNota}>
+            <h2 className={servicio.tituloNota}>Cómo empezamos</h2>
+            <CheckList items={PASOS_COBERTURA_NACIONAL} />
           </div>
         </div>
       </Section>
@@ -188,6 +349,15 @@ export default function DepartamentoJuridicoPage() {
           </p>
         </div>
       </div>
+
+      <Section fondo="base">
+        <SectionHeader
+          antetitulo="Preguntas frecuentes"
+          titulo="Antes de contratar un abogado laboral para tu empresa"
+          descripcion="Estas son las dudas más habituales sobre cobertura, asuntos incluidos y forma de trabajo."
+        />
+        <Faq faqs={FAQS_ABOGADO_LABORAL} />
+      </Section>
 
       <CtaFinal
         titulo="Prueba el departamento jurídico un mes, gratis"

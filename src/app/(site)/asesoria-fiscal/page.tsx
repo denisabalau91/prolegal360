@@ -9,15 +9,19 @@ import {
   SectionHeader,
 } from '@/components/features/blocks';
 import { IconoEdificio, IconoHojaCalculo } from '@/components/ui/icons';
-import { MARCA, PLANES } from '@/core/domain/site';
+import { PLANES } from '@/core/domain/site';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/components/features/servicio.module.css';
 
-export const metadata: Metadata = {
-  title: `Asesoría fiscal | ${MARCA.nombre}`,
-  description:
-    'Cerramos tu ejercicio y presentamos tus impuestos a partir de la contabilidad que tú aportas. Impuesto sobre Sociedades incluido. Desde 99 €/mes.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Asesoría fiscal para empresas y autónomos',
+  descripcion:
+    'Asesoría fiscal para empresas y autónomos: revisión, cierre, impuestos y Sociedades incluido. Servicio en toda España desde 99 €/mes.',
+  ruta: '/asesoria-fiscal',
+  imagen: '/images/hero-asesoria-fiscal.jpg',
+  imagenAlt: 'Asesoría fiscal para empresas y autónomos de PROLEGAL360',
+});
 
 const PLAN_FISCAL = PLANES.find((plan) => plan.id === 'fiscal')!;
 

@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import type { ComponentType, SVGProps } from 'react';
+import { DatosEstructurados } from '@/components/seo/DatosEstructurados';
 import { CalculadoraCuota } from '@/components/features/CalculadoraCuota';
 import { Faq } from '@/components/features/Faq';
 import { PlanesPrecios } from '@/components/features/PlanesPrecios';
@@ -26,7 +28,17 @@ import {
   type EscenarioIcono,
 } from '@/core/domain/home-content';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata, DATOS_ESTRUCTURADOS_SITIO } from '@/utils/seo';
 import styles from '@/app/(site)/page.module.css';
+
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Asesoría y abogados para empresas en España',
+  descripcion:
+    'Asesoría laboral, fiscal y jurídica para empresas y autónomos de toda España, con precios publicados y abogado laboral propio.',
+  ruta: '/',
+  imagen: '/images/hero-oficina.jpg',
+  imagenAlt: 'Equipo de asesoría y abogados para empresas de PROLEGAL360',
+});
 
 const ICONOS_ESCENARIO: Record<EscenarioIcono, ComponentType<SVGProps<SVGSVGElement>>> = {
   'shield-alert': IconoEscudoAlerta,
@@ -38,11 +50,15 @@ const ICONOS_ESCENARIO: Record<EscenarioIcono, ComponentType<SVGProps<SVGSVGElem
 export default function HomePage() {
   return (
     <>
+      <DatosEstructurados id="datos-estructurados-sitio" datos={DATOS_ESTRUCTURADOS_SITIO} />
       <section className={styles.hero}>
         <img
           src={conBasePath('/images/hero-oficina.jpg')}
           alt=""
           aria-hidden="true"
+          width={1600}
+          height={1068}
+          fetchPriority="high"
           className={styles.heroImagen}
         />
         <div className={styles.heroDegradado} />
@@ -51,11 +67,11 @@ export default function HomePage() {
           <div className={`animate-rise ${styles.heroContenido}`}>
             <p className={styles.heroSello}>⚖️ Departamento jurídico incluido</p>
             <h1 className={styles.heroTitulo}>
-              Asesoría laboral, fiscal y jurídica para empresas.
+              Asesoría y abogados para empresas en toda España.
             </h1>
             <p className={styles.heroDescripcion}>
-              No solo llevamos tus papeles: también damos la cara por ti. Precios
-              publicados. Primer mes de servicio jurídico gratuito.
+              Gestión laboral y fiscal con abogado laboral propio cuando surge un problema.
+              Precios publicados y primer mes de servicio jurídico gratuito.
             </p>
             <div className={styles.heroBotones}>
               <ButtonLink href="/calculadora" size="lg" className={styles.heroBotonPrincipal}>

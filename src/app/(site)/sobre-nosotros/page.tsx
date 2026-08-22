@@ -3,13 +3,17 @@ import Link from 'next/link';
 import { CtaFinal, PageHero, Section, SectionHeader } from '@/components/features/blocks';
 import { MARCA } from '@/core/domain/site';
 import { conBasePath } from '@/utils/base-path';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/sobre-nosotros/sobre-nosotros.module.css';
 
-export const metadata: Metadata = {
-  title: `Sobre nosotros | ${MARCA.nombre}`,
-  description:
-    'PROLEGAL360 Asesores forma parte del grupo PROLEGAL360. Por eso el departamento jurídico no es un extra: es el punto de partida.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Abogados y asesores de empresas: quiénes somos',
+  descripcion:
+    'Conoce PROLEGAL360 Asesores, la firma que integra gestión laboral y fiscal con un departamento jurídico especializado en empresas.',
+  ruta: '/sobre-nosotros',
+  imagen: '/images/hero-sobre-nosotros.jpg',
+  imagenAlt: 'Equipo de abogados y asesores de empresas de PROLEGAL360',
+});
 
 interface Principio {
   titulo: string;

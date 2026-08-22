@@ -16,16 +16,60 @@ const manrope = Manrope({
   display: 'swap',
 });
 
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingSiteVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
-  title: 'Asesoría laboral, fiscal y jurídica para empresas | Precios publicados',
-  description:
-    'Asesoría laboral, fiscal y jurídica para empresas y autónomos con precios publicados desde 45 €/mes y departamento jurídico propio incluido. Primer mes de servicio jurídico gratis.',
-  openGraph: {
-    title: `Asesoría laboral, fiscal y jurídica para empresas | ${MARCA.nombre}`,
-    description:
-      'Precios publicados y departamento jurídico incluido. No solo llevamos tus papeles: también damos la cara por ti.',
-    url: MARCA.url,
+  metadataBase: new URL(MARCA.url),
+  title: {
+    default: `Asesoría y abogados para empresas en España | ${MARCA.nombreCorto}`,
+    template: `%s | ${MARCA.nombreCorto}`,
   },
+  description:
+    'Asesoría laboral, fiscal y jurídica para empresas y autónomos de toda España, con precios publicados y abogado laboral propio.',
+  applicationName: MARCA.nombre,
+  creator: MARCA.nombre,
+  publisher: MARCA.nombre,
+  category: 'Servicios jurídicos y asesoría para empresas',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    siteName: MARCA.nombre,
+    title: `Asesoría y abogados para empresas en España | ${MARCA.nombreCorto}`,
+    description:
+      'Asesoría laboral, fiscal y jurídica para empresas de toda España. Precios publicados y abogado laboral propio.',
+    images: [
+      {
+        url: '/images/hero-oficina.jpg',
+        width: 1600,
+        height: 1068,
+        alt: `${MARCA.nombre}: asesoría y abogados para empresas`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Asesoría y abogados para empresas en España | ${MARCA.nombreCorto}`,
+    description:
+      'Asesoría laboral, fiscal y jurídica para empresas de toda España, con precios publicados.',
+    images: ['/images/hero-oficina.jpg'],
+  },
+  verification:
+    googleSiteVerification || bingSiteVerification
+      ? {
+          google: googleSiteVerification,
+          other: bingSiteVerification
+            ? {
+                'msvalidate.01': bingSiteVerification,
+              }
+            : undefined,
+        }
+      : undefined,
 };
 
 interface RootLayoutProps {
@@ -34,7 +78,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="es">
+    <html lang="es-ES">
       <body className={`${sora.variable} ${manrope.variable}`}>
         <div className="site-shell">
           <main className="site-main">{children}</main>

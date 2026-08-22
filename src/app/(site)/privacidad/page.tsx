@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import { PaginaLegal, type ApartadoLegal } from '@/components/features/PaginaLegal';
 import { PageHero, Section } from '@/components/features/blocks';
 import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 
-export const metadata: Metadata = {
-  title: `Política de privacidad | ${MARCA.nombre}`,
-  description:
-    'Cómo tratamos tus datos personales conforme al RGPD y a la LOPDGDD.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Política de privacidad',
+  descripcion: 'Información sobre el tratamiento de datos personales conforme al RGPD y la LOPDGDD.',
+  ruta: '/privacidad',
+  noIndex: true,
+});
 
 const APARTADOS: ApartadoLegal[] = [
   {

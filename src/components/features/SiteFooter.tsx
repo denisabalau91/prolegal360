@@ -15,7 +15,7 @@ const COLUMNAS: ColumnaFooter[] = [
     enlaces: [
       { label: 'Asesoría laboral', href: '/asesoria-laboral' },
       { label: 'Asesoría fiscal', href: '/asesoria-fiscal' },
-      { label: 'Departamento jurídico', href: '/departamento-juridico' },
+      { label: 'Abogado laboral para empresas', href: '/departamento-juridico' },
       { label: 'Sectores atendidos', href: '/sectores' },
     ],
   },
@@ -62,14 +62,17 @@ export function SiteFooter() {
                 src={conBasePath('/images/logo-prolegal360.png')}
                 alt=""
                 aria-hidden="true"
+                width={500}
+                height={500}
+                loading="lazy"
                 className={styles.iconoMarca}
               />
               PROLEGAL<span className={styles.numero}>360</span>{' '}
               <span className={styles.siglas}>ASESORES</span>
             </p>
             <p className={styles.descripcion}>
-              Asesoría laboral, fiscal y jurídica para empresas y autónomos. Precios
-              publicados y departamento jurídico propio incluido en la cuota.
+              Asesoría laboral y fiscal con abogado laboral propio para empresas y autónomos
+              de toda España. Precios publicados y atención directa.
             </p>
             <span className={styles.sello}>{MARCA.sello}</span>
             <div className={styles.datosContacto}>

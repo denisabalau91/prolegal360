@@ -33,6 +33,8 @@ jobs:
         env:
           NEXT_PUBLIC_FORMS_ENDPOINT: ${{ vars.NEXT_PUBLIC_FORMS_ENDPOINT }}
           NEXT_PUBLIC_FORMS_KEY: ${{ vars.NEXT_PUBLIC_FORMS_KEY }}
+          NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+          NEXT_PUBLIC_BING_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_BING_SITE_VERIFICATION }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -177,9 +177,9 @@ export const NAV_ITEMS: NavItem[] = [
         desc: 'Cierre, impuestos e IS incluido',
       },
       {
-        label: 'Departamento jurídico',
+        label: 'Abogado laboral',
         href: '/departamento-juridico',
-        desc: 'Abogado propio en tu cuota',
+        desc: 'Defensa laboral para empresas',
       },
       {
         label: 'Sectores',

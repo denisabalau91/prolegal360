@@ -2,13 +2,16 @@ import type { Metadata } from 'next';
 import { PaginaLegal, type ApartadoLegal } from '@/components/features/PaginaLegal';
 import { PageHero, Section } from '@/components/features/blocks';
 import { MARCA } from '@/core/domain/site';
+import { crearMetadata } from '@/utils/seo';
 import styles from '@/app/(site)/cookies/cookies.module.css';
 
-export const metadata: Metadata = {
-  title: `Política de cookies | ${MARCA.nombre}`,
-  description:
-    'Información sobre el uso de cookies en este sitio web, conforme a la LSSI-CE y a las directrices de la AEPD.',
-};
+export const metadata: Metadata = crearMetadata({
+  titulo: 'Política de cookies',
+  descripcion:
+    'Información sobre el uso de cookies en este sitio web conforme a la LSSI-CE y las directrices de la AEPD.',
+  ruta: '/cookies',
+  noIndex: true,
+});
 
 interface CookieDescrita {
   nombre: string;
