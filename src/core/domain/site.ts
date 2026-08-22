@@ -198,7 +198,6 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Sobre nosotros', href: '/sobre-nosotros', desc: 'Equipo y trayectoria' },
       { label: 'Casos de éxito', href: '/casos-de-exito', desc: 'Testimonios de clientes' },
       { label: 'Recursos', href: '/recursos', desc: 'Checklist de cierre fiscal' },
-      { label: 'Blog', href: '/blog', desc: 'Artículos laborales y fiscales' },
     ],
   },
   { label: 'Contacto', href: '/contacto' },

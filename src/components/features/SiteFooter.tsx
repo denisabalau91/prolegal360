@@ -34,7 +34,6 @@ const COLUMNAS: ColumnaFooter[] = [
       { label: 'Sobre nosotros', href: '/sobre-nosotros' },
       { label: 'Casos de éxito', href: '/casos-de-exito' },
       { label: 'Recursos gratuitos', href: '/recursos' },
-      { label: 'Blog', href: '/blog' },
       { label: 'Contacto', href: '/contacto' },
     ],
   },

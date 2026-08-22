@@ -11,45 +11,6 @@ export const metadata: Metadata = {
     'PROLEGAL360 Asesores forma parte del grupo PROLEGAL360. Por eso el departamento jurídico no es un extra: es el punto de partida.',
 };
 
-interface Persona {
-  nombre: string;
-  cargo: string;
-  bio: string;
-  colegiado: string;
-  foto: string;
-}
-
-const EQUIPO: Persona[] = [
-  {
-    nombre: 'Carlos Méndez',
-    cargo: 'Socio director',
-    bio: 'Economista y asesor fiscal. Dirige la asesoría y coordina la relación con el despacho PROLEGAL360.',
-    colegiado: 'Colegiado nº 4.812 · Colegio de Economistas de Madrid',
-    foto: '/images/equipo-carlos-mendez.jpg',
-  },
-  {
-    nombre: 'Elena Vidal',
-    cargo: 'Abogada · Responsable del departamento jurídico',
-    bio: 'Abogada laboralista. Lleva las inspecciones, los despidos conflictivos y la representación ante el SMAC.',
-    colegiado: 'Colegiada nº 128.457 · Ilustre Colegio de la Abogacía de Madrid',
-    foto: '/images/equipo-elena-vidal.jpg',
-  },
-  {
-    nombre: 'Nuria Peris',
-    cargo: 'Responsable del área laboral',
-    bio: 'Graduada social. Coordina nóminas, seguros sociales y toda la gestión con la Seguridad Social.',
-    colegiado: 'Colegiada nº 3.209 · Colegio de Graduados Sociales de Madrid',
-    foto: '/images/equipo-nuria-peris.jpg',
-  },
-  {
-    nombre: 'Álvaro Sanz',
-    cargo: 'Responsable del área fiscal',
-    bio: 'Especialista en cierre contable y fiscal. Revisa los ajustes extracontables y el Impuesto sobre Sociedades.',
-    colegiado: 'Colegiado nº 5.640 · Colegio de Economistas de Madrid',
-    foto: '/images/equipo-alvaro-sanz.jpg',
-  },
-];
-
 interface Principio {
   titulo: string;
   texto: string;
@@ -153,32 +114,6 @@ export default function SobreNosotrosPage() {
       </Section>
 
       <Section fondo="arena">
-        <SectionHeader
-          antetitulo="Equipo"
-          titulo="Personas con nombre, apellidos y número de colegiado"
-          descripcion="Sabes siempre quién lleva tu expediente y a quién llamar."
-        />
-        <div className={styles.rejillaEquipo}>
-          {EQUIPO.map((persona) => (
-            <article key={persona.nombre} className={styles.tarjetaPersona}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={conBasePath(persona.foto)}
-                alt={`${persona.nombre}, ${persona.cargo}`}
-                className={styles.fotoPersona}
-              />
-              <div className={styles.fichaPersona}>
-                <h3 className={styles.nombrePersona}>{persona.nombre}</h3>
-                <p className={styles.cargoPersona}>{persona.cargo}</p>
-                <p className={styles.bioPersona}>{persona.bio}</p>
-                <p className={styles.colegiadoPersona}>{persona.colegiado}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section fondo="base">
         <SectionHeader
           antetitulo="Cómo entendemos el trabajo"
           titulo="Cuatro principios que no negociamos"
