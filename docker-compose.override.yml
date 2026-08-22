@@ -1,0 +1,7 @@
+# Solo para pruebas locales: `docker compose up` lo carga automáticamente.
+# Coolify invoca `docker compose -f docker-compose.yml`, así que este archivo
+# nunca se aplica en el VPS y no puede provocar conflictos de puertos.
+services:
+  prolegal:
+    ports:
+      - "3000:80"

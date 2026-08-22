@@ -1,0 +1,83 @@
+.rejilla {
+  display: grid;
+  gap: 3rem;
+}
+
+.indice {
+  align-self: start;
+}
+
+.tituloIndice {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted-foreground);
+}
+
+.listaIndice {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.enlaceIndice {
+  margin-left: -1px;
+  display: block;
+  border-left: 2px solid transparent;
+  padding-left: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  transition:
+    color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enlaceIndice:hover {
+  border-color: var(--accent);
+  color: var(--primary);
+}
+
+.fecha {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.contenido {
+  max-width: 48rem;
+}
+
+.apartado {
+  scroll-margin-top: 7rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+
+.apartado:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tituloApartado {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.cuerpoApartado {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .rejilla {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .indice {
+    position: sticky;
+    top: 7rem;
+  }
+}

@@ -1,0 +1,293 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+}
+
+/* Barra superior */
+.barraSuperior {
+  display: none;
+  background-color: var(--navy-deep);
+  color: rgb(255 255 255 / 0.75);
+}
+
+.barraSuperiorInterior {
+  margin: 0 auto;
+  display: flex;
+  max-width: var(--container-max);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.lema {
+  letter-spacing: 0.025em;
+}
+
+.contactos {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.contacto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contacto:hover {
+  color: var(--accent);
+}
+
+.iconoContacto {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Barra principal */
+.barraPrincipal {
+  border-bottom: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--background) 95%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .barraPrincipal {
+    background-color: color-mix(in oklab, var(--background) 85%, transparent);
+  }
+}
+
+.barraPrincipalInterior {
+  margin: 0 auto;
+  display: flex;
+  max-width: var(--container-max);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Navegación de escritorio */
+.nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navEnlace {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.125rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: color-mix(in oklab, var(--foreground) 75%, transparent);
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navEnlace:hover {
+  color: var(--primary);
+}
+
+.navEnlaceActivo {
+  color: var(--primary);
+}
+
+.iconoChevron {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.desplegable {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 18rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 0.5rem;
+  box-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.desplegableEnlace {
+  display: block;
+  border-radius: 0.125rem;
+  padding: 0.625rem 0.75rem;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desplegableEnlace:hover {
+  background-color: var(--secondary);
+}
+
+.desplegableTitulo {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.desplegableDescripcion {
+  margin-top: 0.125rem;
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* Acciones */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ctaEscritorio {
+  display: none;
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.ctaEscritorio:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.botonMenu {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Sello móvil */
+.selloMovil {
+  border-top: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+  background-color: color-mix(in oklab, var(--secondary) 60%, transparent);
+  padding: 0.375rem 1rem;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* Menú móvil */
+.menuMovil {
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.menuMovilInterior {
+  margin: 0 auto;
+  max-width: var(--container-max);
+  padding: 1rem;
+}
+
+.menuMovilGrupo {
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+  padding: 0.25rem 0;
+}
+
+.menuMovilGrupo:last-of-type {
+  border-bottom: 0;
+}
+
+.menuMovilEnlace {
+  display: block;
+  padding: 0.625rem 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.menuMovilHijos {
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+}
+
+.menuMovilHijo {
+  display: block;
+  padding: 0.375rem 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.menuMovilAcciones {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.ctaMovil {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.ctaMovil:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+@media (min-width: 640px) {
+  .barraSuperiorInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .barraPrincipalInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .ctaEscritorio {
+    display: inline-flex;
+  }
+
+  .menuMovilInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .selloMovil {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .barraSuperior {
+    display: block;
+  }
+
+  .barraSuperiorInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .barraPrincipalInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .botonMovil {
+    display: none;
+  }
+
+  .menuMovil {
+    display: none;
+  }
+}

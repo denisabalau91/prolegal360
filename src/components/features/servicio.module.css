@@ -1,0 +1,427 @@
+/* Bloques compartidos por las páginas de servicio (laboral, fiscal, jurídico) */
+.rejillaDos {
+  display: grid;
+  gap: 3rem;
+}
+
+.tarjetaNota {
+  align-self: start;
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1.75rem;
+}
+
+.tituloNota {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoNota {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.subBloqueNota {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.tituloSubBloque {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.destacadoNota {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.botonNota {
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+/* Tarjetas "cómo trabajamos" */
+.rejillaTres {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaProceso {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.iconoProceso {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--accent);
+}
+
+.tituloProceso {
+  margin-top: 1rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoProceso {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+/* Banner destacado */
+.banner {
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+  padding: 2rem;
+}
+
+.tituloBanner {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoBanner {
+  margin-top: 1rem;
+  font-size: 15px;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.botonesBanner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.botonBannerPrimario {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonBannerPrimario:hover {
+  background-color: var(--navy-deep);
+}
+
+/* Tablas de tarifas */
+.rejillaTarifas {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaTarifa {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.cabeceraTarifa {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--primary);
+  padding: 1rem 1.5rem;
+  color: var(--primary-foreground);
+}
+
+.iconoTarifa {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--accent);
+}
+
+.tituloTarifa {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tablaTarifa {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.filaTarifaImpar {
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+}
+
+.conceptoTarifa {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.importeTarifa {
+  padding: 1rem 1.5rem;
+  text-align: right;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.notaTarifas {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.enlaceTarifas {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Aviso legal / cláusula */
+.clausula {
+  margin-top: 2rem;
+  border-left: 2px solid var(--primary);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1.5rem;
+}
+
+.antetituloClausula {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+}
+
+.textoClausula {
+  margin-top: 0.75rem;
+  font-size: 15px;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+/* Franja de aviso (primer mes gratis / actuaciones puntuales) */
+.franja {
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+.franjaInterior {
+  margin: 0 auto;
+  display: flex;
+  max-width: var(--container-max);
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+}
+
+.iconoFranja {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.textoFranja {
+  font-size: 15px;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.destacadoFranja {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Ficha de la abogada (jurídico) */
+.rejillaAbogada {
+  display: grid;
+  align-items: start;
+  gap: 2.5rem;
+}
+
+.fichaFoto {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 0.75rem;
+}
+
+.fotoAbogada {
+  height: 420px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.pieFoto {
+  padding: 1.25rem 0.75rem;
+}
+
+.nombreAbogada {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.cargoAbogada {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.colegiadaAbogada {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+.iconoColegiada {
+  margin-top: 0.125rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.rejillaIncluye {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaIncluye {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.5rem;
+}
+
+.tarjetaNoIncluye {
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1.5rem;
+}
+
+.tituloIncluye {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.cuerpoIncluye {
+  margin-top: 1.25rem;
+}
+
+.notaIncluye {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+/* Tarjeta reparto (fiscal) */
+.tarjetaReparto {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 2rem;
+}
+
+.tarjetaRepartoDestacada {
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  background-color: var(--sand);
+}
+
+.antetituloReparto {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+}
+
+.antetituloRepartoAccent {
+  color: var(--accent);
+}
+
+.tituloReparto {
+  margin-top: 0.75rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.cuerpoReparto {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .franjaInterior {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .rejillaIncluye {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .rejillaTres {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .banner {
+    grid-template-columns: 1.3fr 1fr;
+    padding: 3rem;
+  }
+
+  .rejillaTarifas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rejillaDos > .tarjetaReparto {
+    grid-column: auto;
+  }
+
+  .rejillaReparto {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejillaDos {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .franjaInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .rejillaAbogada {
+    grid-template-columns: 380px 1fr;
+  }
+}

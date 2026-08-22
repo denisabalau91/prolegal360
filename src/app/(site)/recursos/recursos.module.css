@@ -1,0 +1,148 @@
+.rejilla {
+  display: grid;
+  align-items: start;
+  gap: 2.5rem;
+}
+
+.insignia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 10%, transparent);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+.iconoInsignia {
+  width: 1rem;
+  height: 1rem;
+}
+
+.titulo {
+  margin-top: 1.25rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--primary);
+}
+
+.descripcion {
+  margin-top: 1.25rem;
+  font-size: 15px;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.puntos {
+  margin-top: 1.75rem;
+}
+
+.imagen {
+  margin-top: 2.25rem;
+  height: 16rem;
+  width: 100%;
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+.tarjetaDescarga {
+  border: 1px solid var(--border);
+  background-color: var(--sand);
+  padding: 1.75rem;
+}
+
+.tituloDescarga {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoDescarga {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.cuerpoDescarga {
+  margin-top: 1.75rem;
+}
+
+/* Adelanto del contenido */
+.rejillaContenido {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaContenido {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 2rem;
+}
+
+.tituloContenido {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.listaContenido {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.625rem;
+}
+
+.itemContenido {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.numeroContenido {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.destacadoContenido {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .titulo {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .tarjetaDescarga {
+    padding: 2.25rem;
+  }
+
+  .rejillaContenido {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejilla {
+    grid-template-columns: 1.15fr 1fr;
+  }
+
+  .tarjetaDescarga {
+    position: sticky;
+    top: 7rem;
+  }
+}

@@ -1,0 +1,146 @@
+.rejilla {
+  display: grid;
+  gap: 3rem;
+}
+
+.tarjetaFormulario {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.tituloTarjeta {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.subtituloTarjeta {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.cuerpoFormulario {
+  margin-top: 1.75rem;
+}
+
+.lateral {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.tarjetaDatos {
+  border: 1px solid var(--border);
+  background-color: var(--sand);
+  padding: 1.75rem;
+}
+
+.tituloDatos {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.listaDatos {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.dato {
+  display: flex;
+  gap: 1rem;
+}
+
+.iconoDato {
+  margin-top: 0.125rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.etiquetaDato {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+}
+
+.telefonoDato {
+  margin-top: 0.25rem;
+  display: block;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.telefonoDato:hover {
+  color: var(--accent);
+}
+
+.enlaceDato {
+  margin-top: 0.25rem;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.enlaceDato:hover {
+  color: var(--accent);
+}
+
+.textoDato {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.tarjetaPasos {
+  border-left: 2px solid var(--accent);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1.75rem;
+}
+
+.listaPasos {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.paso {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.numeroPaso {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 768px) {
+  .tarjetaFormulario {
+    padding: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejilla {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}

@@ -1,0 +1,513 @@
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--navy-deep);
+  color: #fff;
+}
+
+.heroImagen {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.heroDegradado {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--navy-deep),
+    color-mix(in oklab, var(--navy-deep) 96%, transparent),
+    color-mix(in oklab, var(--navy) 85%, transparent)
+  );
+}
+
+.heroRejilla {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+}
+
+.heroInterior {
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--container-max);
+  padding: 5rem 1rem;
+}
+
+.heroContenido {
+  max-width: 48rem;
+}
+
+.heroSello {
+  margin-bottom: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 10%, transparent);
+  padding: 0.375rem 0.75rem;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+
+.heroTitulo {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.heroDescripcion {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.heroBotones {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.heroBotonPrincipal {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.heroBotonPrincipal:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.heroBotonSecundario {
+  border: 1px solid rgb(255 255 255 / 0.35);
+  background-color: transparent;
+  color: #fff;
+}
+
+.heroBotonSecundario:hover {
+  background-color: rgb(255 255 255 / 0.1);
+  color: #fff;
+}
+
+.iconoFlecha {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Cifra destacada */
+.cifra {
+  border-bottom: 1px solid var(--border);
+  background-color: var(--sand);
+}
+
+.cifraInterior {
+  margin: 0 auto;
+  max-width: var(--container-max);
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.cifraNumero {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 3.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.cifraTexto {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--muted-foreground);
+}
+
+/* Pilares */
+.rejillaPilares {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaPilar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+  transition:
+    border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tarjetaPilar:hover {
+  border-color: var(--accent);
+  box-shadow: 0 18px 45px -30px rgb(15 23 42 / 0.55);
+}
+
+.tituloPilar {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.descripcionPilar {
+  margin-top: 0.75rem;
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.precioPilar {
+  margin-top: 1.5rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.sufijoPilar {
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.extraPilar {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+.enlacePilar {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tarjetaPilar:hover .enlacePilar {
+  color: var(--accent);
+}
+
+.iconoPilar {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Nota bajo los planes */
+.notaPlanes {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.enlaceNotaPlanes {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Escenarios */
+.rejillaEscenarios {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.tarjetaEscenario {
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background-color: rgb(255 255 255 / 0.05);
+  padding: 1.5rem;
+  transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tarjetaEscenario:hover {
+  border-color: color-mix(in oklab, var(--accent) 50%, transparent);
+}
+
+.iconoEscenario {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--accent);
+}
+
+.tituloEscenario {
+  margin-top: 1rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.situacionEscenario {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.respuestaEscenario {
+  margin-top: 1rem;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.conclusionEscenarios {
+  margin-top: 2.5rem;
+  border-left: 2px solid var(--accent);
+  background-color: rgb(255 255 255 / 0.05);
+  padding: 1.5rem;
+}
+
+.textoConclusion {
+  font-size: 1rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.9);
+}
+
+/* Comparativa */
+.contenedorTabla {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+
+.tabla {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.filaCabecera {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.celdaCabecera {
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.celdaCabeceraNosotros {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.celdaCabeceraTradicional {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.7);
+}
+
+.filaPar {
+  background-color: var(--card);
+}
+
+.filaImpar {
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+}
+
+.celdaConcepto {
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.celdaValor {
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+
+.insigniaSi {
+  display: inline-flex;
+  height: 1.75rem;
+  width: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: color-mix(in oklab, var(--accent) 15%, transparent);
+}
+
+.iconoSi {
+  width: 1rem;
+  height: 1rem;
+  color: var(--accent);
+}
+
+.insigniaNo {
+  display: inline-flex;
+  height: 1.75rem;
+  width: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+}
+
+.iconoNo {
+  width: 1rem;
+  height: 1rem;
+  color: var(--destructive);
+}
+
+/* Pasos */
+.rejillaPasos {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaPaso {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.numeroPaso {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.tituloPaso {
+  margin-top: 1rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.descripcionPaso {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+/* Testimonios + FAQ */
+.rejillaFaq {
+  margin-top: 4rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .heroInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .heroTitulo {
+    font-size: 3rem;
+  }
+
+  .heroBotones {
+    flex-direction: row;
+  }
+
+  .cifraInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .cifraNumero {
+    font-size: 4.5rem;
+  }
+
+  .cifraTexto {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .heroInterior {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .heroTitulo {
+    font-size: 3.4rem;
+  }
+
+  .heroDescripcion {
+    font-size: 1.25rem;
+  }
+
+  .cifraInterior {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .cifraNumero {
+    font-size: 6rem;
+  }
+
+  .rejillaPilares {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rejillaEscenarios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .conclusionEscenarios {
+    padding: 2rem;
+  }
+
+  .textoConclusion {
+    font-size: 1.125rem;
+  }
+
+  .rejillaPasos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .cifraInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .rejillaFaq {
+    grid-template-columns: 1fr 1.4fr;
+  }
+}

@@ -1,0 +1,646 @@
+.contenedor {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+/* Pestañas de pasos */
+.pestanas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-bottom: 1px solid var(--border);
+}
+
+.pestana {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 0.5rem;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: color-mix(in oklab, var(--secondary) 50%, transparent);
+  color: var(--muted-foreground);
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pestana:hover {
+  background-color: var(--secondary);
+}
+
+.pestanaActiva,
+.pestanaActiva:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.numeroPestana {
+  display: flex;
+  height: 1.25rem;
+  width: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-size: 11px;
+  background-color: var(--border);
+  color: var(--primary);
+}
+
+.pestanaActiva .numeroPestana {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.etiquetaPestana {
+  display: none;
+}
+
+/* Cuerpo */
+.cuerpo {
+  padding: 1.25rem;
+}
+
+.paso {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.tituloPaso {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.subtituloPaso {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.leyenda {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.opcionesForma {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.opcion {
+  border: 1px solid var(--border);
+  padding: 0.875rem 1rem;
+  text-align: left;
+  transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.opcion:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+.opcionActiva,
+.opcionActiva:hover {
+  border-color: var(--accent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+}
+
+.opcionTitulo {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.opcionDescripcion {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.etiquetaCampo {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.campoTrabajadores {
+  margin-top: 0.5rem;
+  max-width: 180px;
+}
+
+.ayudaCampo {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.opcionesFacturas {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.opcionFactura {
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: color-mix(in oklab, var(--foreground) 80%, transparent);
+  transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.opcionFactura:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+.opcionFacturaActiva,
+.opcionFacturaActiva:hover {
+  border-color: var(--accent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+  color: var(--primary);
+}
+
+.botonPrimario {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonPrimario:hover {
+  background-color: var(--navy-deep);
+}
+
+.iconoBoton {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Paso 2 */
+.listaPilares {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pilar {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 0.875rem;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  text-align: left;
+  transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pilar:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+.pilarActivo,
+.pilarActivo:hover {
+  border-color: var(--accent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+}
+
+.casillaPilar {
+  margin-top: 0.125rem;
+  display: flex;
+  height: 1.25rem;
+  width: 1.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+}
+
+.casillaPilarActiva {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.iconoCasilla {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.pilarTextos {
+  flex: 1;
+}
+
+.pilarCabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pilarNombre {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.pilarEtiqueta {
+  border-radius: 0.125rem;
+  background-color: var(--accent);
+  padding: 0.125rem 0.5rem;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--accent-foreground);
+}
+
+.pilarDescripcion {
+  margin-top: 0.25rem;
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.accionesPaso {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.botonVerCuota {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.botonVerCuota:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.avisoError {
+  font-size: 0.75rem;
+  color: var(--destructive);
+}
+
+/* Paso 3 */
+.desglose {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.lineaDesglose {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  padding: 0.875rem 0;
+}
+
+.lineaDesglose + .lineaDesglose {
+  border-top: 1px solid var(--border);
+}
+
+.lineaTextos {
+  min-width: 0;
+}
+
+.lineaEtiqueta {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.lineaEtiquetaTachada {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+}
+
+.lineaDetalle {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.lineaImportes {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.lineaImporte {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary);
+}
+
+.lineaImporteTachado {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+}
+
+.chipGratis {
+  border-radius: 0.125rem;
+  background-color: var(--accent);
+  padding: 0.25rem 0.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--accent-foreground);
+}
+
+.avisoJuridico {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--destructive) 30%, transparent);
+  background-color: color-mix(in oklab, var(--destructive) 5%, transparent);
+  padding: 1rem;
+}
+
+.iconoAvisoJuridico {
+  margin-top: 0.125rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--destructive);
+}
+
+.textoAvisoJuridico {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--destructive);
+}
+
+.bloquePresupuesto {
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+  padding: 1.5rem;
+}
+
+.tituloPresupuesto {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoPresupuesto {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.botonPresupuesto {
+  margin-top: 1rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonPresupuesto:hover {
+  background-color: var(--navy-deep);
+}
+
+.totales {
+  display: grid;
+  gap: 1rem;
+}
+
+.totalPrimerMes {
+  border: 1px solid var(--accent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+  padding: 1.5rem;
+}
+
+.totalTitulo {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent-foreground);
+}
+
+.totalImporteGrande {
+  margin-top: 0.5rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.totalNota {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.totalRecurrente {
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1.5rem;
+}
+
+.totalTituloRecurrente {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+}
+
+.totalImporteMedio {
+  margin-top: 0.5rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.sufijoMes {
+  margin-left: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.nota360 {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.ahorro360 {
+  color: var(--accent);
+}
+
+.notaCondiciones {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.accionesFinales {
+  display: grid;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.botonContratar {
+  width: 100%;
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.botonContratar:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.notaContratar {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.confirmacionEmail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: var(--primary);
+}
+
+.iconoConfirmacion {
+  margin-top: 0.125rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.formularioEmail {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.filaEmail {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.iconoEnviar {
+  width: 1rem;
+  height: 1rem;
+}
+
+.girando {
+  animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.textoEnviar {
+  display: none;
+  margin-left: 0.5rem;
+}
+
+.notaEmail {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+.pieCambiarDatos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Nota legal */
+.notaLegal {
+  border-top: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1.25rem;
+}
+
+.notaLegalTexto {
+  font-size: 13px;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .pestana {
+    font-size: 0.875rem;
+  }
+
+  .etiquetaPestana {
+    display: inline;
+  }
+
+  .opcionesFacturas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .botonPrimario {
+    width: auto;
+  }
+
+  .accionesPaso {
+    flex-direction: row;
+  }
+
+  .totales {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .textoEnviar {
+    display: inline;
+  }
+
+  .pieCambiarDatos {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .cuerpo {
+    padding: 2rem;
+  }
+
+  .totalImporteGrande {
+    font-size: 3.75rem;
+  }
+
+  .totalImporteMedio {
+    font-size: 2.25rem;
+  }
+
+  .accionesFinales {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .notaLegal {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

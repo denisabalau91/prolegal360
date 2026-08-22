@@ -1,0 +1,99 @@
+.contenedor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.enlace {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.marca {
+  height: 2.5rem;
+  width: 2.5rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enlace:hover .marca {
+  transform: scale(1.05);
+}
+
+.textos {
+  line-height: 1;
+}
+
+.nombre {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--primary);
+}
+
+.numero {
+  color: var(--accent);
+}
+
+.subtitulo {
+  margin-top: 0.125rem;
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--muted-foreground);
+}
+
+.sello {
+  display: none;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 0.125rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 10%, transparent);
+  padding: 0.25rem 0.625rem;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+/* Variante clara (fondos oscuros) */
+.claro .marca {
+  background-color: #fff;
+  border-radius: 9999px;
+  padding: 2px;
+}
+
+.claro .nombre {
+  color: #fff;
+}
+
+.claro .subtitulo {
+  color: rgb(255 255 255 / 0.6);
+}
+
+.claro .sello {
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  color: var(--accent);
+}
+
+@media (min-width: 640px) {
+  .contenedor {
+    gap: 1rem;
+  }
+
+  .nombre {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .sello {
+    display: inline-flex;
+  }
+}

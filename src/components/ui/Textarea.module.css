@@ -1,0 +1,32 @@
+.textarea {
+  display: flex;
+  min-height: 7rem;
+  width: 100%;
+  resize: vertical;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: transparent;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 1rem;
+  box-shadow: var(--shadow-xs);
+  transition:
+    color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.textarea:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+@media (min-width: 768px) {
+  .textarea {
+    font-size: 0.875rem;
+  }
+}

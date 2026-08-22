@@ -1,0 +1,15 @@
+services:
+  prolegal:
+    build:
+      context: .
+      args:
+        # Opcionales: defínelas en Coolify (o en un .env junto al compose)
+        # para activar el envío de formularios; sin ellas el respaldo es mailto:.
+        NEXT_PUBLIC_FORMS_ENDPOINT: ${NEXT_PUBLIC_FORMS_ENDPOINT:-}
+        NEXT_PUBLIC_FORMS_KEY: ${NEXT_PUBLIC_FORMS_KEY:-}
+    # Coolify enruta con su proxy al puerto 80 del contenedor al asignar el dominio;
+    # no hay que publicar puertos en el host (provocaría conflictos de bind en el VPS).
+    expose:
+      - "80"
+    # Para probar en local, docker-compose.override.yml publica el puerto 3000.
+    restart: unless-stopped

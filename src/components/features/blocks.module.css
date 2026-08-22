@@ -1,0 +1,394 @@
+/* Sección genérica */
+.seccion {
+  padding: 4rem 0;
+}
+
+.fondoBase {
+  background-color: var(--background);
+}
+
+.fondoArena {
+  background-color: var(--sand);
+}
+
+.fondoNavy {
+  background-color: var(--navy-deep);
+  color: #fff;
+}
+
+.interior {
+  margin: 0 auto;
+  max-width: var(--container-max);
+  padding: 0 1rem;
+}
+
+/* Cabecera de sección */
+.cabecera {
+  max-width: 48rem;
+  margin-bottom: 2.5rem;
+}
+
+.antetitulo {
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.titulo {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--primary);
+}
+
+.tituloClaro {
+  color: #fff;
+}
+
+.descripcion {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.descripcionClara {
+  color: rgb(255 255 255 / 0.7);
+}
+
+/* Hero de subpágina */
+.pageHero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--navy-deep);
+  color: #fff;
+}
+
+.pageHeroRejilla {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+}
+
+.pageHeroImagen {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+}
+
+.pageHeroDegradado {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to right,
+    var(--navy-deep),
+    color-mix(in oklab, var(--navy-deep) 95%, transparent),
+    color-mix(in oklab, var(--navy-deep) 70%, transparent)
+  );
+}
+
+.pageHeroInterior {
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--container-max);
+  padding: 4rem 1rem;
+}
+
+.pageHeroContenido {
+  max-width: 48rem;
+}
+
+.pageHeroAntetitulo {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.pageHeroTitulo {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+.pageHeroDescripcion {
+  margin-top: 1.25rem;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.75);
+}
+
+.pageHeroAcciones {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Precio dentro del hero de servicio */
+.heroPrecio {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heroPrecioBloque {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.25rem;
+}
+
+.heroPrecioImporte {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.heroPrecioSufijo {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.heroPrecioNota {
+  margin-top: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.heroPrecioBoton {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.heroPrecioBoton:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.heroPrecioIcono {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 640px) {
+  .heroPrecio {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .heroPrecioImporte {
+    font-size: 3rem;
+  }
+}
+
+/* CTA final */
+.cta {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--navy);
+  color: #fff;
+}
+
+.ctaRejilla {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+}
+
+.ctaInterior {
+  position: relative;
+  margin: 0 auto;
+  max-width: var(--container-max);
+  padding: 4rem 1rem;
+}
+
+.ctaContenido {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.ctaTextos {
+  max-width: 42rem;
+}
+
+.ctaTitulo {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.ctaDescripcion {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.75);
+}
+
+.ctaTelefono {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.ctaEnlaceTelefono {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.ctaEnlaceTelefono:hover {
+  text-decoration: underline;
+}
+
+.ctaBotones {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ctaBotonPrincipal {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.ctaBotonPrincipal:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.ctaBotonSecundario {
+  border: 1px solid rgb(255 255 255 / 0.3);
+  background-color: transparent;
+  color: #fff;
+}
+
+.ctaBotonSecundario:hover {
+  background-color: rgb(255 255 255 / 0.1);
+  color: #fff;
+}
+
+.ctaIconoFlecha {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 640px) {
+  .interior {
+    padding: 0 1.5rem;
+  }
+
+  .pageHeroInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .pageHeroTitulo {
+    font-size: 2.25rem;
+  }
+
+  .pageHeroAcciones {
+    flex-direction: row;
+  }
+
+  .titulo {
+    font-size: 1.875rem;
+  }
+
+  .ctaInterior {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .ctaTitulo {
+    font-size: 1.875rem;
+  }
+
+  .ctaBotones {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .seccion {
+    padding: 6rem 0;
+  }
+
+  .pageHeroInterior {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .pageHeroTitulo {
+    font-size: 2.9rem;
+  }
+
+  .pageHeroDescripcion {
+    font-size: 1.125rem;
+  }
+
+  .cabecera {
+    margin-bottom: 3.5rem;
+  }
+
+  .titulo {
+    font-size: 2.1rem;
+  }
+
+  .ctaInterior {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .interior {
+    padding: 0 2rem;
+  }
+
+  .pageHeroInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .ctaInterior {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .ctaContenido {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .ctaBotones {
+    width: auto;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1280px) {
+  .ctaBotones {
+    flex-direction: row;
+  }
+}

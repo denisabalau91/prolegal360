@@ -1,0 +1,131 @@
+.rejillaVentajas {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ventaja {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.iconoVentaja {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--accent);
+}
+
+.tituloVentaja {
+  margin-top: 1rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoVentaja {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.rejillaPasos {
+  display: grid;
+  gap: 3rem;
+}
+
+.listaPasos {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.paso {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.25rem;
+}
+
+.numeroPaso {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.tituloPaso {
+  margin-top: 0.25rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoPaso {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.tituloMomento {
+  margin-top: 2.5rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.listaMomentos {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.momento {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.tarjetaFormulario {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.tituloFormulario {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.subtituloFormulario {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.cuerpoFormulario {
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .rejillaVentajas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .tarjetaFormulario {
+    padding: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejillaPasos {
+    grid-template-columns: 1fr 1.05fr;
+  }
+}

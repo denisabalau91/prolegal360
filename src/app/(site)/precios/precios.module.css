@@ -1,0 +1,140 @@
+.rejillaTarifas {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjetaTarifa {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.cabeceraTarifa {
+  border-bottom: 1px solid var(--border);
+  background-color: var(--primary);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-foreground);
+}
+
+.cuerpoTarifa {
+  padding: 1.5rem;
+}
+
+.precioTarifa {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.sufijoTarifa {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.extraTarifa {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+.ejemploTarifa {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.destacadoTarifa {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.tablaTarifa {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.filaImpar {
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+}
+
+.conceptoFila {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.importeFila {
+  padding: 0.75rem 1.5rem;
+  text-align: right;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.notaGratis {
+  border-top: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.banner360 {
+  margin-top: 2rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  background-color: color-mix(in oklab, var(--accent) 8%, transparent);
+  padding: 1.5rem;
+}
+
+.tituloBanner {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.textoBanner {
+  margin-top: 0.75rem;
+  max-width: 56rem;
+  font-size: 15px;
+  line-height: 1.625;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.enlaceBanner {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rejillaFaq {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .banner360 {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejillaTarifas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rejillaFaq {
+    grid-template-columns: 1fr 1.4fr;
+  }
+}

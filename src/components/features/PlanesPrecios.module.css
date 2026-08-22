@@ -1,0 +1,207 @@
+.rejilla {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjeta {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.5rem;
+}
+
+.tarjetaDestacada {
+  border-color: var(--accent);
+  box-shadow: 0 18px 50px -24px rgb(248 80 80 / 0.55);
+}
+
+.etiqueta {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.5rem;
+  border-radius: 0.125rem;
+  background-color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--accent-foreground);
+}
+
+.nombre {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--primary);
+}
+
+.precioBloque {
+  margin-top: 1rem;
+}
+
+.precio {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.precioSufijo {
+  margin-left: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.precioExtra {
+  margin-top: 0.5rem;
+  display: inline-block;
+  border-radius: 0.125rem;
+  background-color: color-mix(in oklab, var(--accent) 12%, transparent);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+.resumen {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.listaIncluye {
+  margin-top: 1.5rem;
+  flex: 1;
+  display: grid;
+  gap: 0.625rem;
+  align-content: start;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.itemIncluye {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+.iconoCheck {
+  margin-top: 0.125rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.textoIncluye {
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.bloqueNoIncluye {
+  margin-top: 1.5rem;
+}
+
+.botonNoIncluye {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--secondary) 60%, transparent);
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.botonNoIncluye:hover {
+  background-color: var(--secondary);
+}
+
+.iconoChevron {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconoChevronAbierto {
+  transform: rotate(180deg);
+}
+
+.textoNoIncluye {
+  border: 1px solid var(--border);
+  border-top: 0;
+  background-color: color-mix(in oklab, var(--secondary) 30%, transparent);
+  padding: 0.75rem 0.875rem;
+  font-size: 13px;
+  line-height: 1.625;
+  color: var(--muted-foreground);
+}
+
+.acciones {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.botonContratar {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonContratar:hover {
+  background-color: var(--navy-deep);
+}
+
+.botonContratarDestacado {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.botonContratarDestacado:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.botonDetalle {
+  color: var(--muted-foreground);
+}
+
+.iconoDetalle {
+  margin-left: 0.375rem;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .tarjeta {
+    padding: 1.75rem;
+  }
+
+  .rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rejillaTresColumnas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .rejilla:not(.rejillaTresColumnas) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

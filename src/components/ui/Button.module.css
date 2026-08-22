@@ -1,0 +1,85 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  line-height: 1.4285;
+  font-weight: 500;
+  transition:
+    color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  flex-shrink: 0;
+}
+
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.button:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+.button svg {
+  pointer-events: none;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* Tamaños */
+.sizeDefault {
+  height: 2.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.sizeSm {
+  height: 2rem;
+  gap: 0.375rem;
+  padding: 0 0.75rem;
+}
+
+.sizeLg {
+  height: 2.5rem;
+  padding: 0 1.5rem;
+}
+
+.sizeIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+
+/* Variantes */
+.variantDefault {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-xs);
+}
+
+.variantDefault:hover {
+  background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+}
+
+.variantOutline {
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  box-shadow: var(--shadow-xs);
+}
+
+.variantOutline:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.variantGhost:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
