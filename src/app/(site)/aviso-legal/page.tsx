@@ -115,6 +115,29 @@ const APARTADOS: ApartadoLegal[] = [
           de terceros, sin que el acceso al sitio web pueda atribuir derecho alguno sobre
           ellos.
         </p>
+        <p>
+          Salvo autorización previa y expresa por escrito o habilitación legal imperativa,
+          queda prohibida la extracción automatizada, copia sistemática, reproducción,
+          reutilización, redistribución o transformación de los contenidos, así como su
+          incorporación a bases de datos o conjuntos de datos de terceros.
+        </p>
+        <p>
+          El titular reserva expresamente, conforme al artículo 67.3 del Real Decreto-ley
+          24/2021, de 2 de noviembre, el uso de todas las obras y prestaciones accesibles en
+          este sitio para minería de textos y datos. Esta reserva comprende, entre otros usos,
+          el entrenamiento, ajuste, evaluación o fundamentación de sistemas y modelos de
+          inteligencia artificial. La reserva se comunica también mediante medios legibles
+          por máquina en el archivo <code>/.well-known/tdmrep.json</code> y en las directivas
+          del archivo <code>/robots.txt</code>.
+        </p>
+        <p>
+          Se autoriza exclusivamente a los motores de búsqueda generalistas que respeten las
+          directivas de <code>robots.txt</code> a rastrear e indexar contenidos con la finalidad
+          de mostrar resultados que remitan mediante enlace a este sitio. Esta autorización no
+          incluye el uso de los contenidos para minería de textos y datos, conjuntos de datos,
+          respuestas sustitutivas ni sistemas de inteligencia artificial. La inexistencia o
+          limitación de una medida técnica no supone renuncia a derecho alguno.
+        </p>
       </>
     ),
   },
