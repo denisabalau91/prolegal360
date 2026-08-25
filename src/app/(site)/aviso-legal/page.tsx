@@ -22,10 +22,7 @@ const APARTADOS: ApartadoLegal[] = [
         <p>En cumplimiento del artículo 10 de la LSSI-CE, se informa de los siguientes datos:</p>
         <ul>
           <li>
-            <strong>Denominación social:</strong> {MARCA.nombre}
-          </li>
-          <li>
-            <strong>NIF:</strong> {MARCA.cif}
+            <strong>Denominación comercial:</strong> {MARCA.nombre}
           </li>
           <li>
             <strong>Domicilio social:</strong> {MARCA.direccion}, {MARCA.codigoPostal}{' '}

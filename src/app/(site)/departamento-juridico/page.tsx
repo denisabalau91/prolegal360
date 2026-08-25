@@ -226,8 +226,8 @@ export default function DepartamentoJuridicoPage() {
           <figure className={servicio.fichaFoto}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={conBasePath('/images/equipo-elena-vidal.jpg')}
-              alt="Elena Vidal Aparicio, Abogada · Responsable del departamento jurídico"
+              src={conBasePath('/images/roxana_denisa.jpg')}
+              alt="Roxana Denisa Balau, Abogada · Responsable del departamento jurídico"
               width={600}
               height={899}
               loading="lazy"
@@ -235,13 +235,13 @@ export default function DepartamentoJuridicoPage() {
               className={servicio.fotoAbogada}
             />
             <figcaption className={servicio.pieFoto}>
-              <p className={servicio.nombreAbogada}>Elena Vidal Aparicio</p>
+              <p className={servicio.nombreAbogada}>Roxana Denisa Balau</p>
               <p className={servicio.cargoAbogada}>
                 Abogada · Responsable del departamento jurídico
               </p>
               <p className={servicio.colegiadaAbogada}>
                 <IconoInsigniaCheck className={servicio.iconoColegiada} />
-                Colegiada nº 128.457 del Ilustre Colegio de la Abogacía de Madrid
+                Colegiada nº 7178 del Ilustre Colegio de Las Palmas de Gran Canaria
               </p>
             </figcaption>
           </figure>
@@ -249,8 +249,8 @@ export default function DepartamentoJuridicoPage() {
           <div>
             <SectionHeader
               antetitulo="Quién lleva tus asuntos"
-              titulo="Tienes nombre, apellidos y número de colegiada"
-              descripcion="Abogada laboralista con más de doce años de ejercicio. Dirige el departamento jurídico de PROLEGAL360 Asesores y coordina con el despacho PROLEGAL360 los asuntos que llegan a vía judicial. Lleva personalmente las alegaciones ante la Inspección de Trabajo, los despidos conflictivos y la asistencia a los actos de conciliación."
+              titulo="Roxana Denisa Balau"
+              descripcion="Abogada laboralista con más de 7 años de ejercicio. Dirige el departamento jurídico de PROLEGAL360 Asesores y coordina con el despacho PROLEGAL360 los asuntos que llegan a vía judicial. Lleva personalmente las alegaciones ante la Inspección de Trabajo, los despidos conflictivos y la asistencia a los actos de conciliación."
             />
             <div className={servicio.rejillaIncluye}>
               <div className={servicio.tarjetaIncluye}>

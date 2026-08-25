@@ -22,9 +22,6 @@ const APARTADOS: ApartadoLegal[] = [
           <strong>Responsable:</strong> {MARCA.nombre}
         </li>
         <li>
-          <strong>NIF:</strong> {MARCA.cif}
-        </li>
-        <li>
           <strong>Dirección:</strong> {MARCA.direccion}, {MARCA.codigoPostal} {MARCA.ciudad}
         </li>
         <li>
