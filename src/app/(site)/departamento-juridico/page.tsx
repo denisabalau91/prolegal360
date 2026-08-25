@@ -241,7 +241,7 @@ export default function DepartamentoJuridicoPage() {
               </p>
               <p className={servicio.colegiadaAbogada}>
                 <IconoInsigniaCheck className={servicio.iconoColegiada} />
-                Colegiada nº 7178 del Ilustre Colegio de Las Palmas de Gran Canaria
+                Colegiada nº 7178 del Ilustre Colegio de Abogados de Las Palmas de Gran Canaria
               </p>
             </figcaption>
           </figure>
@@ -250,7 +250,7 @@ export default function DepartamentoJuridicoPage() {
             <SectionHeader
               antetitulo="Quién lleva tus asuntos"
               titulo="Roxana Denisa Balau"
-              descripcion="Abogada laboralista con más de 7 años de ejercicio. Dirige el departamento jurídico de PROLEGAL360 Asesores y coordina con el despacho PROLEGAL360 los asuntos que llegan a vía judicial. Lleva personalmente las alegaciones ante la Inspección de Trabajo, los despidos conflictivos y la asistencia a los actos de conciliación."
+              descripcion="Dirige el departamento jurídico de PROLEGAL360 Asesores y coordina con el despacho PROLEGAL360 los asuntos que llegan a vía judicial. Lleva personalmente las alegaciones ante la Inspección de Trabajo, los despidos conflictivos y la asistencia a los actos de conciliación."
             />
             <div className={servicio.rejillaIncluye}>
               <div className={servicio.tarjetaIncluye}>
