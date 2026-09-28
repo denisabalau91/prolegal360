@@ -6,7 +6,11 @@ import type {
   SimulacionesGateway,
   SimulacionPayload,
 } from '@/core/ports/simulaciones-gateway';
-import { enviarFormulario, formularioConfigurado } from '@/infrastructure/formularios-web';
+import {
+  enviarFormulario,
+  formularioConfigurado,
+  urlMailto,
+} from '@/infrastructure/formularios-web';
 
 const CLAVE_SIMULACIONES = 'pl360_simulaciones';
 
@@ -104,10 +108,7 @@ export const simulacionesLocal: SimulacionesGateway = {
       });
     }
 
-    const destino = `mailto:${MARCA.email}?subject=${encodeURIComponent(
-      asunto,
-    )}&body=${encodeURIComponent(cuerpoPropuesta(payload))}`;
-    window.location.href = destino;
+    window.location.href = urlMailto(MARCA.email, asunto, cuerpoPropuesta(payload));
     return { ok: true };
   },
 };

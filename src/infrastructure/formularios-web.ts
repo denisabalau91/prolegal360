@@ -9,8 +9,19 @@ import type { RespuestaApi } from '@/core/ports/respuesta-api';
  */
 const ENDPOINT = process.env.NEXT_PUBLIC_FORMS_ENDPOINT ?? '';
 const ACCESS_KEY = process.env.NEXT_PUBLIC_FORMS_KEY ?? '';
+/** Dirección opcional que recibe copia (CC) de cada formulario. */
+const EMAIL_COPIA = process.env.NEXT_PUBLIC_FORMS_CC ?? '';
 
 export const formularioConfigurado = ENDPOINT !== '';
+
+export function urlMailto(destinatario: string, asunto: string, cuerpo: string): string {
+  const parametros = [
+    EMAIL_COPIA ? `cc=${encodeURIComponent(EMAIL_COPIA)}` : '',
+    `subject=${encodeURIComponent(asunto)}`,
+    `body=${encodeURIComponent(cuerpo)}`,
+  ].filter(Boolean);
+  return `mailto:${destinatario}?${parametros.join('&')}`;
+}
 
 export async function enviarFormulario(
   datos: Record<string, unknown>,
@@ -19,7 +30,11 @@ export async function enviarFormulario(
     return { ok: false, error: 'Servicio de formularios no configurado' };
   }
   try {
-    const cuerpo = ACCESS_KEY ? { access_key: ACCESS_KEY, ...datos } : datos;
+    const cuerpo = {
+      ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
+      ...(EMAIL_COPIA ? { ccemail: EMAIL_COPIA } : {}),
+      ...datos,
+    };
     const respuesta = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {

@@ -4,7 +4,11 @@ import type {
   DetalleSolicitud,
   MensajeContacto,
 } from '@/core/ports/contacto-gateway';
-import { enviarFormulario, formularioConfigurado } from '@/infrastructure/formularios-web';
+import {
+  enviarFormulario,
+  formularioConfigurado,
+  urlMailto,
+} from '@/infrastructure/formularios-web';
 
 function asuntoMensaje(mensaje: MensajeContacto): string {
   if (mensaje.asunto) {
@@ -49,9 +53,7 @@ export const contactoWeb: ContactoGateway = {
       });
     }
 
-    window.location.href = `mailto:${MARCA.email}?subject=${encodeURIComponent(
-      asunto,
-    )}&body=${encodeURIComponent(cuerpoCorreo(mensaje))}`;
+    window.location.href = urlMailto(MARCA.email, asunto, cuerpoCorreo(mensaje));
     return { ok: true };
   },
 };
