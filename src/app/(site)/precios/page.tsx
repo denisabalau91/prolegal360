@@ -45,7 +45,7 @@ export default function PreciosPage() {
         <SectionHeader
           antetitulo="Comparativa"
           titulo={`Las tres formas de contratar, con ${TRABAJADORES_EJEMPLO} trabajadores`}
-          descripcion={`Solo laboral, solo jurídico (con el primer mes gratis) o ambos en el pack, donde el jurídico mantiene su precio y la laboral cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador.`}
+          descripcion={`Solo laboral, solo jurídico (con un 20 % de descuento el primer mes) o ambos en el pack, donde el jurídico mantiene su precio y la laboral cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador.`}
         />
         <TablaModalidades />
         <p className={styles.nota}>

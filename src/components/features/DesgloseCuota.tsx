@@ -2,6 +2,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { IconoTrianguloAlerta } from '@/components/ui/icons';
 import {
   DESCUENTO_PACK_POR_TRABAJADOR,
+  DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE,
   MAXIMO_TRABAJADORES_TARIFA,
   etiquetaTrabajadores,
   type LineaCuota,
@@ -121,10 +122,11 @@ export function DesgloseCuota({ resultado }: DesgloseCuotaProps) {
             <div className={styles.totalPrimerMes}>
               <p className={styles.totalTitulo}>Primer mes</p>
               <p className={styles.totalImporteSecundario}>
-                {primerMes === 0 ? 'Gratis' : formatearImporte(primerMes)}
+                {formatearImporte(primerMes)}
               </p>
               <p className={styles.totalNota}>
-                Nuevas altas: te ahorras {formatearImporte(descuentoPrimerMes)} el primer mes.
+                Nuevas altas: {DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE} % de descuento en el
+                departamento jurídico (−{formatearImporte(descuentoPrimerMes)}).
               </p>
             </div>
           )}

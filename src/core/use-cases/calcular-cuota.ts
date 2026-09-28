@@ -1,5 +1,6 @@
 import {
   DESCUENTO_PACK_POR_TRABAJADOR,
+  DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE,
   MAXIMO_TRABAJADORES_TARIFA,
   MODALIDADES,
   TARIFA_JURIDICA,
@@ -15,7 +16,7 @@ import {
   type TramoLaboral,
   type TramoPlantilla,
 } from '@/core/domain/calculadora';
-import { formatearImporte, type Centimos } from '@/core/domain/importe';
+import { aplicarPorcentaje, formatearImporte, type Centimos } from '@/core/domain/importe';
 
 export interface CuotaLaboral {
   tramo: TramoLaboral;
@@ -49,6 +50,10 @@ export function buscarTramoJuridico(trabajadores: number): TramoJuridico | null 
 
 export function calcularDescuentoPack(trabajadores: number): Centimos {
   return DESCUENTO_PACK_POR_TRABAJADOR * normalizarTrabajadores(trabajadores);
+}
+
+export function calcularDescuentoPrimerMes(juridico: Centimos): Centimos {
+  return aplicarPorcentaje(juridico, DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE);
 }
 
 export function modalidadDeServicios(servicios: ServicioEmpresaId[]): ModalidadId | null {
@@ -85,7 +90,12 @@ export function cotizarModalidad(id: ModalidadId, trabajadores: number): Cotizac
   }
 
   if (id === 'juridico') {
-    return { ...modalidad, cuotaMensual: juridico, primerMes: 0, ahorroMensual: null };
+    return {
+      ...modalidad,
+      cuotaMensual: juridico,
+      primerMes: juridico - calcularDescuentoPrimerMes(juridico),
+      ahorroMensual: null,
+    };
   }
 
   if (laboral === null) {

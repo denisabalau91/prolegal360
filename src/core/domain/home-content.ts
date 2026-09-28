@@ -47,7 +47,7 @@ export const SERVICIOS: ServicioDestacado[] = [
       'Nóminas y gestión laboral con el departamento jurídico detrás. Contrátalos por separado o juntos con descuento.',
     precio: PRECIO_LABORAL_POR_TRABAJADOR,
     precioSufijo: '/trabajador',
-    precioExtra: `Jurídico desde ${PRECIO_JURIDICO_DESDE}/mes · 1.er mes gratis`,
+    precioExtra: `Jurídico desde ${PRECIO_JURIDICO_DESDE}/mes · 1.er mes −20 %`,
     href: '/asesoria-laboral',
   },
   {
@@ -187,7 +187,7 @@ export const FAQS_HOME: FaqItem[] = [
   },
   {
     pregunta: '¿Qué promociones tenéis?',
-    respuesta: `Si contratas el departamento jurídico, el primer mes es gratis para nuevas altas. A partir del segundo mes se aplica la tarifa que corresponda según los trabajadores en alta. En el pack laboral + jurídico no se suma esta promoción: su ventaja son los ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador cada mes. Sin permanencia.`,
+    respuesta: `Si contratas el departamento jurídico, el primer mes tiene un 20 % de descuento para nuevas altas. A partir del segundo mes se aplica la tarifa que corresponda según los trabajadores en alta. En el pack laboral + jurídico no se suma esta promoción: su ventaja son los ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador cada mes. Sin permanencia.`,
   },
   {
     pregunta: '¿Por qué la asesoría fiscal no tiene precio publicado?',

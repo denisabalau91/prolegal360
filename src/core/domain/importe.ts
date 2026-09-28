@@ -16,3 +16,7 @@ export function formatearImporte(centimos: Centimos): string {
 export function aEuros(centimos: Centimos): number {
   return centimos / 100;
 }
+
+export function aplicarPorcentaje(centimos: Centimos, porcentaje: number): Centimos {
+  return Math.round((centimos * porcentaje) / 100);
+}

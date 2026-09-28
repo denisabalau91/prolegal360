@@ -90,7 +90,9 @@ export const MAXIMO_TRABAJADORES_TARIFA = 100;
 export const DESCUENTO_PACK_POR_TRABAJADOR: Centimos = 600;
 
 /** Promoción para nuevas altas del departamento jurídico contratado sin el pack. */
-export const PROMOCION_PRIMER_MES_JURIDICO = '1.er mes gratis';
+export const DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE = 20;
+
+export const PROMOCION_PRIMER_MES_JURIDICO = `${DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE} % de descuento el 1.er mes`;
 
 /** Plantilla de referencia para los precios de ejemplo publicados. */
 export const TRABAJADORES_EJEMPLO = 10;

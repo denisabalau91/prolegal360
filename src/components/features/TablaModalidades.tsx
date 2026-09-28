@@ -22,11 +22,7 @@ export function TablaModalidades() {
             ? modalidad.contenido
             : `${modalidad.contenido} · ahorro de ${formatearImporte(modalidad.ahorroMensual)}/mes`,
           modalidad.cuotaMensual === null ? '—' : `${formatearImporte(modalidad.cuotaMensual)}/mes`,
-          modalidad.primerMes === null
-            ? '—'
-            : modalidad.primerMes === 0
-              ? 'Gratis'
-              : formatearImporte(modalidad.primerMes),
+          modalidad.primerMes === null ? '—' : formatearImporte(modalidad.primerMes),
         ],
       }))}
     />

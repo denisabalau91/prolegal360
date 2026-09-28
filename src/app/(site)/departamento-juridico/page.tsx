@@ -41,7 +41,7 @@ import styles from '@/app/(site)/departamento-juridico/juridico.module.css';
 
 export const metadata: Metadata = crearMetadata({
   titulo: 'Departamento jurídico para empresas: abogado laboral por cuota fija',
-  descripcion: `Tu departamento jurídico desde ${PRECIO_JURIDICO_DESDE}/mes: despidos, sanciones, inspecciones y requerimientos. Primer mes gratis.`,
+  descripcion: `Tu departamento jurídico desde ${PRECIO_JURIDICO_DESDE}/mes: despidos, sanciones, inspecciones y requerimientos. 20 % de descuento el primer mes.`,
   ruta: '/departamento-juridico',
   imagen: '/images/hero-departamento-juridico.jpg',
   imagenAlt: 'Departamento jurídico para empresas de PROLEGAL360',
@@ -99,7 +99,7 @@ const FAQS_DEPARTAMENTO_JURIDICO: FaqItem[] = [
   },
   {
     pregunta: '¿Puedo contratar el departamento jurídico sin la asesoría laboral?',
-    respuesta: `Sí. Contratado solo, el primer mes es gratis para nuevas altas. Junto a la asesoría laboral, en el pack, el jurídico mantiene su tarifa y la laboral te cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador cada mes.`,
+    respuesta: `Sí. Contratado solo, el primer mes tiene un 20 % de descuento para nuevas altas. Junto a la asesoría laboral, en el pack, el jurídico mantiene su tarifa y la laboral te cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador cada mes.`,
   },
   {
     pregunta: '¿La asistencia a juicio o al SEMAC entra en la cuota?',
@@ -108,7 +108,7 @@ const FAQS_DEPARTAMENTO_JURIDICO: FaqItem[] = [
   },
   {
     pregunta: '¿Cuánto cuesta el departamento jurídico?',
-    respuesta: `Desde ${PRECIO_JURIDICO_DESDE} al mes para empresas de 1 a 10 trabajadores, y por tramos según la plantilla. Con más de ${MAXIMO_TRABAJADORES_TARIFA} trabajadores, presupuesto personalizado. Para nuevas altas, el primer mes es gratis.`,
+    respuesta: `Desde ${PRECIO_JURIDICO_DESDE} al mes para empresas de 1 a 10 trabajadores, y por tramos según la plantilla. Con más de ${MAXIMO_TRABAJADORES_TARIFA} trabajadores, presupuesto personalizado. Para nuevas altas, el primer mes tiene un 20 % de descuento.`,
   },
   {
     pregunta: '¿El servicio está pensado para empresas o para trabajadores?',
@@ -190,7 +190,7 @@ export default function DepartamentoJuridicoPage() {
           <IconoRegalo className={servicio.iconoFranja} />
           <p className={servicio.textoFranja}>
             <strong className={servicio.destacadoFranja}>
-              El primer mes del departamento jurídico es gratis
+              El primer mes del departamento jurídico tiene un 20 % de descuento
             </strong>{' '}
             para nuevas altas. A partir del segundo mes se aplica la tarifa que corresponda
             según los trabajadores en alta. Sin permanencia y sin coste de cancelación.
@@ -326,7 +326,7 @@ export default function DepartamentoJuridicoPage() {
       </Section>
 
       <CtaFinal
-        titulo="Prueba el departamento jurídico: el primer mes es gratis"
+        titulo="Prueba el departamento jurídico con un 20 % de descuento el primer mes"
         descripcion="Sin permanencia y sin coste de cancelación. Si no te convence, no lo renuevas."
       />
     </>

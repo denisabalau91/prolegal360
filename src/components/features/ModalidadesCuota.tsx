@@ -1,5 +1,5 @@
 import {
-  PROMOCION_PRIMER_MES_JURIDICO,
+  DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE,
   etiquetaTrabajadores,
   type CotizacionModalidad,
   type ModalidadId,
@@ -63,9 +63,8 @@ export function ModalidadesCuota({
                 modalidad.cuotaMensual !== null &&
                 modalidad.primerMes < modalidad.cuotaMensual && (
                   <p className={styles.primerMes}>
-                    {modalidad.primerMes === 0
-                      ? PROMOCION_PRIMER_MES_JURIDICO
-                      : `1.er mes: ${formatearImporte(modalidad.primerMes)}`}
+                    1.er mes: {formatearImporte(modalidad.primerMes)} (−
+                    {DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE} %)
                   </p>
                 )}
               <button

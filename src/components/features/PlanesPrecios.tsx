@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ButtonLink } from '@/components/ui/Button';
 import { IconoCheck, IconoChevronAbajo, IconoFlechaDerecha } from '@/components/ui/icons';
 import {
-  PROMOCION_PRIMER_MES_JURIDICO,
+  DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE,
   TARIFA_LABORAL,
   TRABAJADORES_EJEMPLO,
   type CotizacionModalidad,
@@ -51,7 +51,10 @@ function precioDelPlan(plan: Plan, cotizacion: CotizacionModalidad | undefined):
   }
   return {
     ...precio,
-    destacado: cotizacion.primerMes === 0 ? PROMOCION_PRIMER_MES_JURIDICO : undefined,
+    destacado:
+      cotizacion.primerMes !== null && cotizacion.primerMes < cotizacion.cuotaMensual
+        ? `1.er mes: ${formatearImporte(cotizacion.primerMes)} (${DESCUENTO_PRIMER_MES_JURIDICO_PORCENTAJE} % de descuento)`
+        : undefined,
   };
 }
 

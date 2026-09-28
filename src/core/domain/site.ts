@@ -98,7 +98,7 @@ export const PRECIO_JURIDICO_DESDE = formatearImporte(PRIMER_TRAMO_JURIDICO.cuot
 export const AHORRO_PACK_POR_TRABAJADOR = formatearImporte(DESCUENTO_PACK_POR_TRABAJADOR);
 
 export const CONDICION_PROMOCION_JURIDICO =
-  'El primer mes gratis es para nuevas altas que contratan el departamento jurídico sin el pack; el pack tiene su propio descuento, todos los meses.';
+  'El 20 % de descuento del primer mes es para nuevas altas que contratan el departamento jurídico sin el pack; el pack tiene su propio descuento, todos los meses.';
 
 export const NO_INCLUYE_ACTUACIONES =
   'No incluye la asistencia a juicios ni al SEMAC, ni tasas, costas o procuradores. Estas actuaciones se presupuestan aparte, por escrito y con precio cerrado antes de empezar: tu cuota no lleva ninguna tarifa procesal fija.';
@@ -181,7 +181,7 @@ export const PLANES: Plan[] = [
   },
 ];
 
-export const DISCLAIMER_CUOTA = `Cuota orientativa calculada con las tarifas publicadas. La asesoría laboral se factura por trabajador y mes según el tramo de plantilla, y el departamento jurídico con una cuota mensual según los trabajadores en alta. Con más de ${MAXIMO_TRABAJADORES_TARIFA} trabajadores, presupuesto personalizado. En el pack laboral + jurídico, el departamento jurídico mantiene su tarifa y la asesoría laboral cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador y mes. Promoción para nuevas altas: primer mes gratis del departamento jurídico contratado sin el pack, no acumulable al descuento del pack; a partir del segundo mes se aplica la tarifa completa. La asistencia a juicios o al SEMAC se presupuesta aparte. La asesoría fiscal y contable se presupuesta a medida en 24 h laborables. Sin permanencia. Precios sin IVA ni IGIC.`;
+export const DISCLAIMER_CUOTA = `Cuota orientativa calculada con las tarifas publicadas. La asesoría laboral se factura por trabajador y mes según el tramo de plantilla, y el departamento jurídico con una cuota mensual según los trabajadores en alta. Con más de ${MAXIMO_TRABAJADORES_TARIFA} trabajadores, presupuesto personalizado. En el pack laboral + jurídico, el departamento jurídico mantiene su tarifa y la asesoría laboral cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador y mes. Promoción para nuevas altas: 20 % de descuento el primer mes del departamento jurídico contratado sin el pack, no acumulable al descuento del pack; a partir del segundo mes se aplica la tarifa completa. La asistencia a juicios o al SEMAC se presupuesta aparte. La asesoría fiscal y contable se presupuesta a medida en 24 h laborables. Sin permanencia. Precios sin IVA ni IGIC.`;
 
 export const NAV_ITEMS: NavItem[] = [
   {

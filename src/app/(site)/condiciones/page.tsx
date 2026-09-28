@@ -171,7 +171,7 @@ const APARTADOS: ApartadoLegal[] = [
     titulo: '7. Promoción del primer mes del departamento jurídico',
     contenido: (
       <p>
-        La promoción del primer mes gratis del departamento jurídico es válida para nuevas
+        La promoción del 20 % de descuento el primer mes del departamento jurídico es válida para nuevas
         altas que lo contratan sin el pack laboral + jurídico, y se aplica una sola vez por
         cliente. A partir del segundo mes se factura la
         tarifa que corresponda según los trabajadores en alta. La promoción no lleva

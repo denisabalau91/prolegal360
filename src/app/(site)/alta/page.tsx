@@ -18,7 +18,7 @@ const GARANTIAS: string[] = [
   'Traspaso gratuito desde tu asesoría actual',
   'Un mes de solapamiento sin coste',
   'Sin permanencia ni coste de cancelación',
-  'Primer mes gratis si contratas solo el departamento jurídico',
+  '20 % de descuento el primer mes si contratas solo el departamento jurídico',
   'Precio cerrado por escrito antes de empezar',
 ];
 
