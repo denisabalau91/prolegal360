@@ -76,6 +76,21 @@ src/
 - **Exportaciones**: nombradas (evitar `default export` salvo donde Next.js lo exige: páginas y layouts).
 - **Errores**: manejarlos explícitamente; nunca silenciar excepciones con `catch` vacíos.
 
+## Contenido y lógica de negocio: prohibido cambiar sin aprobación
+
+**Nunca modifiques, sin aprobación explícita previa del usuario:**
+
+- Textos visibles de la web (copys, títulos, etiquetas, llamadas a la acción).
+- Precios, cifras, porcentajes, tramos, descuentos y promociones (p. ej. «1.er mes gratis»).
+- Reglas de cálculo y lógica de negocio (`core/domain`, `core/use-cases`): tarifas, fórmulas, redondeos, condiciones.
+- Condiciones de contratación, textos legales y términos del servicio.
+
+Cambiar el contenido equivale a cambiar las reglas o términos del negocio. Por eso:
+
+1. **Primero se pregunta, luego se aplica.** Si un cambio de este tipo parece necesario, proponlo con el texto o la regla exacta y espera el «sí».
+2. Las tareas visuales o de maquetación se resuelven **solo con CSS y estructura**, sin tocar el contenido.
+3. Si el documento de requisitos es ambiguo o contradictorio, **no elijas una interpretación por tu cuenta**: expón las opciones y pregunta.
+
 ## Flujo de trabajo esperado
 
 1. Antes de escribir código, analiza el impacto del cambio en las capas de la arquitectura.

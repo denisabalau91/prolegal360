@@ -248,7 +248,7 @@ export default function DepartamentoJuridicoPage() {
             />
             <div className={servicio.rejillaIncluye}>
               <div className={servicio.tarjetaIncluye}>
-                <h3 className={servicio.tituloIncluye}>Qué SÍ incluye tu cuota</h3>
+                <h3 className={servicio.tituloIncluye}>Qué sí incluye tu cuota</h3>
                 <div className={servicio.cuerpoIncluye}>
                   <CheckList items={PLAN_JURIDICO.incluye} />
                 </div>
