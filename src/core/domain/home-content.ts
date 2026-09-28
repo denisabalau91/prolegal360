@@ -1,6 +1,5 @@
 import { TARIFAS_FINCA } from '@/core/domain/fincas';
 import { formatearImporte } from '@/core/domain/importe';
-import { SUBVENCIONES_VIGENTES } from '@/core/domain/subvenciones';
 import {
   AHORRO_PACK_POR_TRABAJADOR,
   PRECIO_JURIDICO_DESDE,
@@ -48,15 +47,15 @@ export const SERVICIOS: ServicioDestacado[] = [
       'Nóminas y gestión laboral con el departamento jurídico detrás. Contrátalos por separado o juntos con descuento.',
     precio: PRECIO_LABORAL_POR_TRABAJADOR,
     precioSufijo: '/trabajador',
-    precioExtra: `Jurídico desde ${PRECIO_JURIDICO_DESDE}/mes`,
+    precioExtra: `Jurídico desde ${PRECIO_JURIDICO_DESDE}/mes · 1.er mes gratis`,
     href: '/asesoria-laboral',
   },
   {
     nombre: 'FISCAL Y CONTABILIDAD',
     descripcion:
       'Impuestos y cierre a partir de la contabilidad que nos aportas. Impuesto sobre Sociedades incluido.',
-    precio: '24 h',
-    precioSufijo: 'para tu presupuesto',
+    precio: 'Presupuesto',
+    precioSufijo: 'en 24 h',
     precioExtra: 'Cerrado y por escrito',
     href: '/asesoria-fiscal',
   },
@@ -64,8 +63,8 @@ export const SERVICIOS: ServicioDestacado[] = [
     nombre: 'SUBVENCIONES',
     descripcion:
       'Te decimos si encajas, preparamos la solicitud y la presentamos en plazo. Sin que pierdas una ayuda por desconocerla.',
-    precio: String(SUBVENCIONES_VIGENTES.length),
-    precioSufijo: 'ayudas vigentes',
+    precio: 'Vigentes',
+    precioSufijo: 'ahora',
     precioExtra: 'Nuevos autónomos · Contratación',
     href: '/subvenciones',
   },
