@@ -24,12 +24,24 @@ Eres un ingeniero de software con más de 100 años de experiencia en todos los 
 cálculos (p. ej. la calculadora de cuota) se ejecutan en el navegador con funciones
 puras en `core/use-cases`. La persistencia se resuelve con `localStorage`.
 
-**Única excepción de red permitida**: los formularios (contacto, alta, propuesta de la
-calculadora) hacen `POST` a un servicio externo de formularios (Formspree, Web3Forms...)
-configurado vía `NEXT_PUBLIC_FORMS_ENDPOINT` / `NEXT_PUBLIC_FORMS_KEY` (ver
-`.env.example`). Ese `fetch` vive únicamente en `infrastructure/formularios-web.ts`,
-detrás de los puertos de `core/ports`; si no está configurado, el respaldo es abrir
-`mailto:`. Prohibido añadir `fetch` a APIs propias o fuera de la capa de infraestructura.
+**Única excepción de red permitida**: los formularios hacen `POST` a un servicio externo
+de formularios (recomendado **Web3Forms**, que usa el campo `subject` como asunto).
+Ese `fetch` vive únicamente en `infrastructure/formularios-web.ts`, detrás de los puertos
+de `core/ports`. Prohibido añadir `fetch` a APIs propias o fuera de la capa de infraestructura.
+
+- **Variables** (ver `.env.example`; en CI se leen de *GitHub → Settings → Secrets and
+  variables → Actions → Variables*, no de *Secrets*):
+  - `NEXT_PUBLIC_FORMS_ENDPOINT`: URL del servicio (`https://api.web3forms.com/submit`).
+  - `NEXT_PUBLIC_FORMS_KEY`: access key de Web3Forms.
+  - `NEXT_PUBLIC_FORMS_CC`: copia (CC) opcional; en Web3Forms se envía como `ccemail`.
+- **Sin endpoint configurado**, el respaldo es abrir `mailto:` hacia `MARCA.email`
+  (con CC si existe), generado solo con `urlMailto()` de `formularios-web.ts`.
+- **Todos los formularios pasan por ahí**: contacto, cambiar de asesoría, alta, propuesta
+  de la calculadora, presupuesto fiscal, subvenciones, presupuesto de fincas y checklist
+  de recursos. Los formularios nuevos deben componer `FormularioSolicitud` (hook
+  `use-formulario-solicitud` + `ContactoGateway`), pasando los datos extra como `detalles`.
+- Las variables `NEXT_PUBLIC_*` se incrustan al compilar: tras cambiarlas hay que
+  volver a desplegar.
 
 ### Restricción de despliegue (GitHub Pages)
 
@@ -39,6 +51,14 @@ GitHub Pages solo sirve archivos estáticos. Por lo tanto:
 - Prohibido usar API Routes, Server Actions, middleware, ISR o cualquier funcionalidad que requiera servidor Node.
 - Las imágenes deben usar `images: { unoptimized: true }` (el optimizador de `next/image` requiere servidor).
 - El despliegue se automatiza con GitHub Actions (build → export → publicar en Pages).
+  `scripts/postbuild.mjs` mueve `out/` a `docs/` (ignorado en git), que es el artefacto que se publica.
+- En *Settings → Pages* el origen debe ser **GitHub Actions**. Cualquier cambio en esa
+  pantalla (origen o dominio) deja Pages sin publicación activa y la web da 404:
+  hay que relanzar el workflow (*Actions → Desplegar en GitHub Pages → Run workflow*).
+- Dominio propio `prolegal360-asesores.com` servido a través del **proxy de Cloudflare**
+  (HTTPS lo aporta Cloudflare con «Always Use HTTPS» y SSL en modo *Full*; nunca *Full
+  (strict)*). Por eso GitHub muestra «DNS Check in Progress» y no permite «Enforce HTTPS»:
+  es esperado.
 
 ## Arquitectura del proyecto
 
@@ -59,6 +79,19 @@ src/
 ├── styles/               # CSS global, variables (custom properties), reset
 └── utils/                # Funciones puras auxiliares
 ```
+
+### Servicios y fuente única de datos de negocio
+
+La web es una asesoría integral multiservicio: asesoría laboral, departamento jurídico,
+fiscal y contabilidad, subvenciones y administración de fincas. Los requisitos de negocio
+vienen de un documento del usuario (`web.md`); ante cualquier duda, manda ese documento.
+
+- Tarifas, promociones y reglas viven **solo** en `core/domain` (`calculadora.ts`,
+  `fincas.ts`, `subvenciones.ts`, `site.ts`) y los cálculos en `core/use-cases`
+  (`calcular-cuota.ts`, `calcular-presupuesto-fincas.ts`). Páginas, tablas y calculadoras
+  derivan sus cifras de ahí: nunca escribas un precio a mano en un componente.
+- Los importes se manejan en **céntimos** (`Centimos`, `core/domain/importe.ts`) y se
+  muestran con `formatearImporte`.
 
 ### Reglas de dependencia (inquebrantables)
 
@@ -81,7 +114,7 @@ src/
 **Nunca modifiques, sin aprobación explícita previa del usuario:**
 
 - Textos visibles de la web (copys, títulos, etiquetas, llamadas a la acción).
-- Precios, cifras, porcentajes, tramos, descuentos y promociones (p. ej. «1.er mes gratis»).
+- Precios, cifras, porcentajes, tramos, descuentos y promociones (p. ej. el 20 % de descuento del primer mes del departamento jurídico).
 - Reglas de cálculo y lógica de negocio (`core/domain`, `core/use-cases`): tarifas, fórmulas, redondeos, condiciones.
 - Condiciones de contratación, textos legales y términos del servicio.
 
@@ -97,3 +130,6 @@ Cambiar el contenido equivale a cambiar las reglas o términos del negocio. Por 
 2. Ante un bug, primero reproduce y diagnostica la causa raíz; nunca parches el síntoma.
 3. Todo cambio debe dejar el código más limpio de como lo encontraste (regla del boy scout).
 4. Ante cualquier decisión que pueda generar deuda técnica, propón la alternativa limpia y explica el trade-off.
+5. Antes de dar por terminado un cambio: `npx tsc --noEmit` y `npm run build` sin errores.
+6. **Git**: el usuario hace los commits y pushes; tú propones el mensaje. Recuerda que los
+   archivos nuevos requieren `git add -A` (un commit sin ellos rompe el build de CI).
