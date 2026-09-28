@@ -14,6 +14,8 @@ const RUTAS: EntradaSitemap[] = [
   { ruta: '/departamento-juridico', changeFrequency: 'monthly', priority: 0.95 },
   { ruta: '/asesoria-laboral', changeFrequency: 'monthly', priority: 0.9 },
   { ruta: '/asesoria-fiscal', changeFrequency: 'monthly', priority: 0.85 },
+  { ruta: '/administracion-de-fincas', changeFrequency: 'monthly', priority: 0.85 },
+  { ruta: '/subvenciones', changeFrequency: 'monthly', priority: 0.8 },
   { ruta: '/precios', changeFrequency: 'monthly', priority: 0.85 },
   { ruta: '/calculadora', changeFrequency: 'monthly', priority: 0.8 },
   { ruta: '/cambiar-de-asesoria', changeFrequency: 'monthly', priority: 0.75 },

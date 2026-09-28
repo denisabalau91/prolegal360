@@ -1,13 +1,16 @@
-import type { LineaCuota, DatosSimulacion } from '@/core/domain/calculadora';
+import type { DatosSimulacion, LineaCuota, ModalidadId } from '@/core/domain/calculadora';
+import type { Centimos } from '@/core/domain/importe';
 import type { RespuestaApi } from '@/core/ports/respuesta-api';
 
 export type { RespuestaApi };
 
 export interface SimulacionPayload extends DatosSimulacion {
-  total_primer_mes: number | null;
-  total_recurrente: number | null;
-  total_360: number | null;
+  modalidad: ModalidadId | null;
+  cuota_mensual: Centimos | null;
+  primer_mes: Centimos | null;
+  descuento_pack: Centimos | null;
   presupuesto_personalizado: boolean;
+  presupuesto_fiscal: boolean;
   desglose: LineaCuota[];
   origen: string;
 }

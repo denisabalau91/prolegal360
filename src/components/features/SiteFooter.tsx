@@ -14,16 +14,18 @@ const COLUMNAS: ColumnaFooter[] = [
     titulo: 'Servicios',
     enlaces: [
       { label: 'Asesoría laboral', href: '/asesoria-laboral' },
-      { label: 'Asesoría fiscal', href: '/asesoria-fiscal' },
-      { label: 'Abogado laboral para empresas', href: '/departamento-juridico' },
+      { label: 'Departamento jurídico', href: '/departamento-juridico' },
+      { label: 'Fiscal y contabilidad', href: '/asesoria-fiscal' },
+      { label: 'Subvenciones', href: '/subvenciones' },
+      { label: 'Administración de fincas', href: '/administracion-de-fincas' },
       { label: 'Sectores atendidos', href: '/sectores' },
     ],
   },
   {
     titulo: 'Contratar',
     enlaces: [
-      { label: 'Precios y planes', href: '/precios' },
-      { label: 'Calculadora de cuota', href: '/calculadora' },
+      { label: 'Tarifas y modalidades', href: '/precios' },
+      { label: 'Calculadora de coste laboral', href: '/calculadora' },
       { label: 'Cambiar de asesoría', href: '/cambiar-de-asesoria' },
       { label: 'Formulario de alta', href: '/alta' },
     ],
@@ -71,8 +73,8 @@ export function SiteFooter() {
               <span className={styles.siglas}>ASESORES</span>
             </p>
             <p className={styles.descripcion}>
-              Asesoría laboral y fiscal con abogado laboral propio para empresas y autónomos
-              de toda España. Precios publicados y atención directa.
+              {MARCA.lema} {MARCA.lemaDestacado} Asesoría integral para empresas: laboral,
+              jurídico, fiscal, subvenciones y administración de fincas.
             </p>
             <span className={styles.sello}>{MARCA.sello}</span>
             <div className={styles.datosContacto}>

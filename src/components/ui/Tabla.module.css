@@ -1,0 +1,58 @@
+.contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.tabla {
+  width: 100%;
+  min-width: 30rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.filaCabecera {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.filaCabecera .celda {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: inherit;
+}
+
+.fila:nth-child(even) {
+  background-color: color-mix(in oklab, var(--secondary) 40%, transparent);
+}
+
+.fila.filaResaltada {
+  background-color: color-mix(in oklab, var(--accent) 9%, transparent);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.celda {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.celdaConcepto {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.celdaNumerica {
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-weight: 600;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.filaCabecera .celdaNumerica {
+  font-family: inherit;
+}

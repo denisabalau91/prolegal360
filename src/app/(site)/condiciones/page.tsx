@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import { PaginaLegal, type ApartadoLegal } from '@/components/features/PaginaLegal';
 import { PageHero, Section } from '@/components/features/blocks';
-import { MARCA } from '@/core/domain/site';
+import { MAXIMO_TRABAJADORES_TARIFA } from '@/core/domain/calculadora';
+import { AHORRO_PACK_POR_TRABAJADOR, MARCA } from '@/core/domain/site';
 import { crearMetadata } from '@/utils/seo';
 
 export const metadata: Metadata = crearMetadata({
   titulo: 'Condiciones de contratación',
   descripcion:
-    'Condiciones generales de contratación de los planes laboral, fiscal, jurídico y 360 Integral de PROLEGAL360 Asesores.',
+    'Condiciones generales de contratación de los servicios laboral, jurídico, fiscal, de subvenciones y de administración de fincas de PROLEGAL360 Asesores.',
   ruta: '/condiciones',
   noIndex: true,
 });
@@ -20,8 +21,9 @@ const APARTADOS: ApartadoLegal[] = [
     contenido: (
       <p>
         Las presentes condiciones regulan la prestación de servicios de asesoramiento
-        laboral, fiscal y jurídico por parte de {MARCA.nombre} a empresas, autónomos y
-        profesionales. La contratación se formaliza mediante la firma de la correspondiente
+        laboral, jurídico, fiscal y contable, de gestión de subvenciones y de administración
+        de fincas por parte de {MARCA.nombre} a empresas, autónomos, profesionales y
+        comunidades de propietarios. La contratación se formaliza mediante la firma de la correspondiente
         hoja de encargo, que prevalece sobre estas condiciones en caso de discrepancia.
       </p>
     ),
@@ -39,24 +41,35 @@ const APARTADOS: ApartadoLegal[] = [
         </p>
         <ul>
           <li>
-            <strong>LABORAL:</strong> nóminas, seguros sociales, contratos, altas y bajas y
-            aplicación de convenio. No incluye la representación en procedimientos
-            judiciales.
+            <strong>ASESORÍA LABORAL:</strong> nóminas, seguros sociales, contratos, altas y
+            bajas y aplicación de convenio. Puede contratarse sola. No incluye la
+            representación en procedimientos judiciales ni ante el SEMAC.
           </li>
           <li>
-            <strong>FISCAL:</strong> revisión fiscal del cierre, presentación de modelos
-            periódicos e Impuesto sobre Sociedades. No incluye el registro contable diario
-            ni el depósito de cuentas anuales en el Registro Mercantil.
+            <strong>DEPARTAMENTO JURÍDICO:</strong> consultas ilimitadas, redacción de cartas
+            y escritos, contestación a requerimientos y alegaciones ante la Inspección de
+            Trabajo. No incluye la asistencia a juicios ni al SEMAC, tasas, costas ni
+            procuradores.
           </li>
           <li>
-            <strong>JURÍDICO:</strong> consultas ilimitadas, redacción de cartas y escritos,
-            contestación a requerimientos, alegaciones ante la Inspección de Trabajo y
-            asistencia al acto de conciliación. No incluye procedimientos judiciales, tasas
-            ni costas.
+            <strong>PACK LABORAL + JURÍDICO:</strong> los dos servicios anteriores. El
+            departamento jurídico mantiene su tarifa y la asesoría laboral se factura con{' '}
+            {AHORRO_PACK_POR_TRABAJADOR} menos por trabajador y mes, con las mismas exclusiones.
           </li>
           <li>
-            <strong>360 INTEGRAL:</strong> los tres planes anteriores con descuento por
-            agrupación, con las mismas exclusiones.
+            <strong>ASESORÍA FISCAL Y CONTABILIDAD:</strong> revisión fiscal a partir del
+            balance y el balance de sumas y saldos aportados por el cliente, presentación de
+            modelos periódicos e Impuesto sobre Sociedades. No incluye el registro contable
+            diario ni el depósito de cuentas anuales en el Registro Mercantil.
+          </li>
+          <li>
+            <strong>GESTIÓN DE SUBVENCIONES:</strong> estudio de requisitos, preparación,
+            presentación, seguimiento y justificación de las ayudas encargadas. La concesión
+            depende exclusivamente del organismo convocante.
+          </li>
+          <li>
+            <strong>ADMINISTRACIÓN DE FINCAS:</strong> tarifas Básica (contabilidad), Estándar
+            (contabilidad y administración) y Zen (contabilidad, administración y jurídico).
           </li>
         </ul>
         <p>
@@ -76,16 +89,20 @@ const APARTADOS: ApartadoLegal[] = [
     contenido: (
       <>
         <p>
-          Los precios publicados son mensuales y no incluyen IVA, que se repercutirá al tipo
-          vigente. La facturación es mensual y por anticipado, mediante domiciliación
+          Los precios publicados son mensuales y no incluyen IVA ni IGIC, que se repercutirán
+          al tipo vigente según el territorio. La facturación es mensual y por anticipado, mediante domiciliación
           bancaria salvo pacto distinto.
         </p>
         <p>
-          La cuota del plan laboral se calcula como 45 € más 12 € por cada nómina emitida en
-          el mes. La cuota del plan fiscal depende de la forma jurídica y del volumen de
-          facturas. La cuota del plan jurídico depende del número de trabajadores en alta.
-          Si estos parámetros varían de forma estable, la cuota se revisa y se comunica por
-          escrito con al menos 15 días de antelación.
+          La cuota de la asesoría laboral se calcula por trabajador y mes (nómina más
+          gestión) según el tramo de plantilla. La cuota del departamento jurídico depende
+          del número de trabajadores en alta. Con más de {MAXIMO_TRABAJADORES_TARIFA}{' '}
+          trabajadores, ambas se presupuestan a medida. La asesoría fiscal y contable y la
+          gestión de subvenciones se prestan con presupuesto cerrado previo. La
+          administración de fincas se factura por vivienda, local y plaza de garaje o, en
+          mancomunidades, por portal y zona común. Si estos parámetros varían de forma
+          estable, la cuota se revisa y se comunica por escrito con al menos 15 días de
+          antelación.
         </p>
       </>
     ),
@@ -96,10 +113,9 @@ const APARTADOS: ApartadoLegal[] = [
     titulo: '4. Actuaciones puntuales',
     contenido: (
       <p>
-        Un despido, una inspección, un requerimiento o un juicio se presupuestan aparte,
-        siempre por escrito, con precio cerrado y antes de empezar. Nunca recibirás una
-        minuta que no hayas aprobado. Los clientes con plan jurídico tienen un 30 % de
-        descuento.
+        La asistencia a juicios o al SEMAC y cualquier actuación no incluida en la cuota se
+        presupuestan aparte, siempre por escrito, con precio cerrado y antes de empezar.
+        Nunca recibirás una minuta que no hayas aprobado.
       </p>
     ),
   },
@@ -151,12 +167,13 @@ const APARTADOS: ApartadoLegal[] = [
   },
   {
     id: 'promocion',
-    indice: '7. Primer mes gratuito',
-    titulo: '7. Promoción del primer mes gratuito',
+    indice: '7. Promoción del primer mes',
+    titulo: '7. Promoción del primer mes del departamento jurídico',
     contenido: (
       <p>
-        La promoción del primer mes de servicio jurídico gratuito es válida para nuevas
-        altas y se aplica una sola vez por cliente. A partir del segundo mes se factura la
+        La promoción del primer mes gratis del departamento jurídico es válida para nuevas
+        altas que lo contratan sin el pack laboral + jurídico, y se aplica una sola vez por
+        cliente. A partir del segundo mes se factura la
         tarifa que corresponda según los trabajadores en alta. La promoción no lleva
         asociado compromiso de permanencia y es incompatible con otras promociones sobre el
         mismo plan.
@@ -185,10 +202,10 @@ export default function CondicionesPage() {
       <PageHero
         antetitulo="Información legal"
         titulo="Condiciones de contratación"
-        descripcion="Condiciones generales aplicables a la contratación de los planes LABORAL, FISCAL, JURÍDICO y 360 INTEGRAL de PROLEGAL360 Asesores."
+        descripcion="Condiciones generales aplicables a la contratación de los servicios de PROLEGAL360 Asesores: laboral, departamento jurídico, fiscal y contabilidad, subvenciones y administración de fincas."
       />
       <Section fondo="base">
-        <PaginaLegal apartados={APARTADOS} fechaActualizacion="20 de agosto de 2026" />
+        <PaginaLegal apartados={APARTADOS} fechaActualizacion="27 de septiembre de 2026" />
       </Section>
     </>
   );

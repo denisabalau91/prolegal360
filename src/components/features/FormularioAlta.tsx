@@ -8,20 +8,25 @@ import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/Label';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
+import { Casilla } from '@/components/ui/Casilla';
 import { IconoCargando, IconoCheck } from '@/components/ui/icons';
-import { PLANES, type PlanId } from '@/core/domain/site';
+import { PLANES, type Plan } from '@/core/domain/site';
 import { contactoWeb } from '@/infrastructure/contacto-web';
+import { esEmailValido, soloDigitos } from '@/utils/validacion';
 import styles from '@/components/features/FormularioAlta.module.css';
 
-const PATRON_EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const PLANES_CONTRATABLES = PLANES.filter((plan) => plan.id !== 'fiscal');
+const PLAN_POR_DEFECTO = PLANES_CONTRATABLES.find((plan) => plan.destacado) ?? PLANES_CONTRATABLES[0];
+
+function planDesdeParametro(valor: string | null): Plan {
+  return PLANES_CONTRATABLES.find((plan) => plan.id === valor) ?? PLAN_POR_DEFECTO;
+}
 
 export function FormularioAlta() {
   const parametros = useSearchParams();
-  const planInicial = parametros.get('plan');
-  const esPlanValido = PLANES.some((plan) => plan.id === planInicial);
-
-  const [plan, setPlan] = useState<PlanId>(
-    esPlanValido ? (planInicial as PlanId) : '360_integral',
+  const [plan, setPlan] = useState<Plan>(() => planDesdeParametro(parametros.get('plan')));
+  const [conFiscal, setConFiscal] = useState(
+    () => parametros.get('fiscal') === '1' || parametros.get('plan') === 'fiscal',
   );
   const [nombre, setNombre] = useState('');
   const [empresa, setEmpresa] = useState('');
@@ -29,7 +34,9 @@ export function FormularioAlta() {
   const [formaJuridica, setFormaJuridica] = useState('sl');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [trabajadores, setTrabajadores] = useState('');
+  const [trabajadores, setTrabajadores] = useState(() =>
+    soloDigitos(parametros.get('trabajadores') ?? ''),
+  );
   const [asesoriaActual, setAsesoriaActual] = useState('');
   const [comentarios, setComentarios] = useState('');
   const [aceptaCondiciones, setAceptaCondiciones] = useState(false);
@@ -45,7 +52,7 @@ export function FormularioAlta() {
       setError('Rellena los campos obligatorios marcados con *.');
       return;
     }
-    if (!PATRON_EMAIL.test(email)) {
+    if (!esEmailValido(email)) {
       setError('Introduce un email válido para poder enviarte la hoja de encargo.');
       return;
     }
@@ -64,7 +71,13 @@ export function FormularioAlta() {
         telefono: telefono.trim(),
         empresa: empresa.trim(),
         mensaje: comentarios.trim(),
-        plan,
+        plan: plan.nombre,
+        detalles: [
+          {
+            etiqueta: 'Presupuesto de asesoría fiscal y contabilidad',
+            valor: conFiscal ? 'Sí, lo solicita' : 'No',
+          },
+        ],
         forma_juridica: formaJuridica,
         num_trabajadores: trabajadores || undefined,
         nif: nif.trim() || undefined,
@@ -105,27 +118,31 @@ export function FormularioAlta() {
       <fieldset>
         <legend className={styles.leyenda}>Plan que quieres contratar</legend>
         <div className={styles.selectorPlan}>
-          {PLANES.map((opcion) => (
+          {PLANES_CONTRATABLES.map((opcion) => (
             <button
               key={opcion.id}
               type="button"
-              onClick={() => setPlan(opcion.id)}
-              aria-pressed={plan === opcion.id}
+              onClick={() => setPlan(opcion)}
+              aria-pressed={plan.id === opcion.id}
               className={[
                 styles.opcionPlan,
-                plan === opcion.id ? styles.opcionPlanActiva : '',
+                plan.id === opcion.id ? styles.opcionPlanActiva : '',
               ]
                 .filter(Boolean)
                 .join(' ')}
             >
               <span className={styles.nombrePlan}>{opcion.nombre}</span>
-              <span className={styles.precioPlan}>
-                {opcion.precioDesde}
-                {opcion.precioSufijo}
-                {opcion.precioExtra ? ` · ${opcion.precioExtra}` : ''}
-              </span>
+              <span className={styles.precioPlan}>{opcion.resumenPrecio}</span>
             </button>
           ))}
+        </div>
+        <div className={styles.extraFiscal}>
+          <Casilla
+            marcada={conFiscal}
+            onCambio={() => setConFiscal(!conFiscal)}
+            titulo="Añadir presupuesto de asesoría fiscal y contabilidad"
+            descripcion="Te lo enviamos cerrado y por escrito en 24 h laborables, junto a la hoja de encargo."
+          />
         </div>
       </fieldset>
 
@@ -217,12 +234,10 @@ export function FormularioAlta() {
           </Label>
           <Input
             id="alta-trabajadores"
-            type="number"
-            min={0}
             inputMode="numeric"
             placeholder="Ej. 12"
             value={trabajadores}
-            onChange={(evento) => setTrabajadores(evento.target.value)}
+            onChange={(evento) => setTrabajadores(soloDigitos(evento.target.value))}
             className={styles.control}
           />
         </div>

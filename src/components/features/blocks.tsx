@@ -131,7 +131,7 @@ interface CtaFinalProps {
 
 export function CtaFinal({
   titulo = '¿Cuánto te costaría tenerlo todo cubierto?',
-  descripcion = 'Calcula tu cuota en un minuto o reserva 20 minutos con nosotros. Sin compromiso y sin llamadas comerciales insistentes.',
+  descripcion = 'Calcula tu coste laboral al instante o reserva 20 minutos con nosotros. Sin compromiso y sin llamadas comerciales insistentes.',
 }: CtaFinalProps) {
   return (
     <section className={styles.cta}>
@@ -151,7 +151,7 @@ export function CtaFinal({
           </div>
           <div className={styles.ctaBotones}>
             <ButtonLink href="/calculadora" size="lg" className={styles.ctaBotonPrincipal}>
-              Calcula tu cuota en 1 minuto <IconoFlechaDerecha className={styles.ctaIconoFlecha} />
+              Calcula tu coste laboral <IconoFlechaDerecha className={styles.ctaIconoFlecha} />
             </ButtonLink>
             <ButtonLink href="/contacto" size="lg" className={styles.ctaBotonSecundario}>
               Reserva 20 min gratis

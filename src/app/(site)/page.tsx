@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import type { ComponentType, SVGProps } from 'react';
 import { DatosEstructurados } from '@/components/seo/DatosEstructurados';
 import { CalculadoraCuota } from '@/components/features/CalculadoraCuota';
+import { CheckList } from '@/components/features/CheckList';
 import { Faq } from '@/components/features/Faq';
 import { PlanesPrecios } from '@/components/features/PlanesPrecios';
 import { Testimonios } from '@/components/features/Testimonios';
@@ -24,20 +25,22 @@ import {
   ESCENARIOS,
   FAQS_HOME,
   PASOS,
-  PILARES,
+  SERVICIOS,
   type EscenarioIcono,
 } from '@/core/domain/home-content';
+import { MARCA } from '@/core/domain/site';
+import { SUBVENCIONES_VIGENTES } from '@/core/domain/subvenciones';
 import { conBasePath } from '@/utils/base-path';
 import { crearMetadata, DATOS_ESTRUCTURADOS_SITIO } from '@/utils/seo';
 import styles from '@/app/(site)/page.module.css';
 
 export const metadata: Metadata = crearMetadata({
-  titulo: 'Asesoría y abogados para empresas en España',
+  titulo: 'Asesoría integral para empresas con departamento jurídico incluido',
   descripcion:
-    'Asesoría laboral, fiscal y jurídica para empresas y autónomos de toda España, con precios publicados y abogado laboral propio.',
+    'Asesoría laboral con departamento jurídico, fiscal y contabilidad, subvenciones y administración de fincas. Tarifas publicadas y calculadora de coste laboral.',
   ruta: '/',
   imagen: '/images/hero-oficina.jpg',
-  imagenAlt: 'Equipo de asesoría y abogados para empresas de PROLEGAL360',
+  imagenAlt: 'Equipo de asesoría integral para empresas de PROLEGAL360',
 });
 
 const ICONOS_ESCENARIO: Record<EscenarioIcono, ComponentType<SVGProps<SVGSVGElement>>> = {
@@ -65,22 +68,29 @@ export default function HomePage() {
         <div className={`bg-grid ${styles.heroRejilla}`} aria-hidden="true" />
         <div className={styles.heroInterior}>
           <div className={`animate-rise ${styles.heroContenido}`}>
-            <p className={styles.heroSello}>⚖️ Departamento jurídico incluido</p>
+            <p className={styles.heroSello}>{MARCA.sello}</p>
             <h1 className={styles.heroTitulo}>
-              Asesoría y abogados para empresas en toda España.
+              {MARCA.lema}{' '}
+              <span className={styles.heroTituloDestacado}>{MARCA.lemaDestacado}</span>
             </h1>
             <p className={styles.heroDescripcion}>
-              Gestión laboral y fiscal con abogado laboral propio cuando surge un problema.
-              Precios publicados y primer mes de servicio jurídico gratuito.
+              Asesoría integral multiservicio: laboral, departamento jurídico, fiscal y
+              contabilidad, subvenciones y administración de fincas. Con las tarifas publicadas
+              para que sepas lo que pagas antes de llamarnos.
             </p>
             <div className={styles.heroBotones}>
-              <ButtonLink href="/calculadora" size="lg" className={styles.heroBotonPrincipal}>
-                Calcula tu cuota en 1 minuto <IconoFlechaDerecha className={styles.iconoFlecha} />
+              <ButtonLink href="#calculadora" size="lg" className={styles.heroBotonPrincipal}>
+                Calcula tu coste laboral <IconoFlechaDerecha className={styles.iconoFlecha} />
               </ButtonLink>
               <ButtonLink href="/contacto" size="lg" className={styles.heroBotonSecundario}>
                 Reserva 20 min gratis
               </ButtonLink>
             </div>
+            <ul className={styles.heroGarantias}>
+              <li>Tarifas publicadas</li>
+              <li>Sin permanencia</li>
+              <li>Presupuestos cerrados y por escrito</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -94,21 +104,21 @@ export default function HomePage() {
 
       <Section fondo="base">
         <SectionHeader
-          antetitulo="Tres pilares"
-          titulo="Laboral, fiscal y jurídico. Bajo el mismo techo."
-          descripcion="Contrata solo lo que necesitas o los tres juntos con descuento. El precio está publicado en cada uno."
+          antetitulo="Asesoría integral multiservicio"
+          titulo="Todo lo que tu empresa necesita, con un solo interlocutor"
+          descripcion="Contrata solo lo que necesitas o combina servicios. Donde se puede tarifar, el precio está publicado; donde no, te damos presupuesto cerrado en 24 h."
         />
         <div className={styles.rejillaPilares}>
-          {PILARES.map((pilar) => (
-            <Link key={pilar.nombre} href={pilar.href} className={styles.tarjetaPilar}>
+          {SERVICIOS.map((servicio) => (
+            <Link key={servicio.nombre} href={servicio.href} className={styles.tarjetaPilar}>
               <div className="rule-accent" />
-              <h3 className={styles.tituloPilar}>{pilar.nombre}</h3>
-              <p className={styles.descripcionPilar}>{pilar.descripcion}</p>
+              <h3 className={styles.tituloPilar}>{servicio.nombre}</h3>
+              <p className={styles.descripcionPilar}>{servicio.descripcion}</p>
               <p className={styles.precioPilar}>
-                {pilar.precio}
-                <span className={styles.sufijoPilar}>{pilar.precioSufijo}</span>
+                {servicio.precio}
+                <span className={styles.sufijoPilar}>{servicio.precioSufijo}</span>
               </p>
-              {pilar.precioExtra && <p className={styles.extraPilar}>{pilar.precioExtra}</p>}
+              <p className={styles.extraPilar}>{servicio.precioExtra}</p>
               <span className={styles.enlacePilar}>
                 Ver el detalle <IconoFlechaArribaDerecha className={styles.iconoPilar} />
               </span>
@@ -119,15 +129,15 @@ export default function HomePage() {
 
       <Section id="precios" fondo="arena">
         <SectionHeader
-          antetitulo="Precios publicados"
-          titulo="Nuestros cuatro planes, con el precio a la vista"
-          descripcion="Sin formularios, sin registro y sin llamada previa. Esto es lo que cuesta trabajar con nosotros."
+          antetitulo="Laboral y departamento jurídico"
+          titulo="Tres formas de contratar, con el precio a la vista"
+          descripcion="La asesoría laboral se contrata sola o con el departamento jurídico. Juntos, en el pack, con descuento. La fiscal, con presupuesto cerrado."
         />
         <PlanesPrecios />
         <p className={styles.notaPlanes}>
-          Todos los precios son sin IVA y sin permanencia.{' '}
+          Precios sin IVA ni IGIC y sin permanencia.{' '}
           <Link href="/precios" className={styles.enlaceNotaPlanes}>
-            Ver la comparativa completa de planes
+            Ver todas las tarifas y la comparativa
           </Link>
           .
         </p>
@@ -135,9 +145,9 @@ export default function HomePage() {
 
       <Section id="calculadora" fondo="base">
         <SectionHeader
-          antetitulo="Calculadora de cuota"
-          titulo="Calcula tu cuota exacta en un minuto"
-          descripcion="Tres datos y tienes el desglose línea a línea, con el primer mes de servicio jurídico gratuito ya aplicado."
+          antetitulo="Calculadora de coste laboral"
+          titulo="Conoce tu coste laboral al instante"
+          descripcion="Indica tu plantilla, elige servicios y ve el desglose línea a línea, con el descuento del pack y el del primer mes ya aplicados."
         />
         <CalculadoraCuota origen="/" />
       </Section>
@@ -167,11 +177,36 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <Section fondo="arena">
+        <div className={styles.bandaSubvenciones}>
+          <div>
+            <SectionHeader
+              antetitulo="Gestión de subvenciones"
+              titulo="Hay ayudas para tu empresa. Nosotros las tramitamos."
+              descripcion="Revisamos si encajas en las ayudas vigentes, preparamos el expediente y lo presentamos en plazo."
+            />
+            <ButtonLink href="/subvenciones" size="lg" className={styles.botonSubvenciones}>
+              Pedir información <IconoFlechaDerecha className={styles.iconoFlecha} />
+            </ButtonLink>
+          </div>
+          <div className={styles.rejillaSubvenciones}>
+            {SUBVENCIONES_VIGENTES.map((subvencion) => (
+              <article key={subvencion.id} className={styles.tarjetaSubvencion}>
+                <span className={styles.insigniaVigente}>Vigente</span>
+                <h3 className={styles.tituloSubvencion}>{subvencion.titulo}</h3>
+                <p className={styles.destinatariosSubvencion}>{subvencion.destinatarios}</p>
+                <CheckList items={subvencion.queHacemos.slice(0, 2)} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       <Section fondo="base">
         <SectionHeader
           antetitulo="Comparativa"
-          titulo="PROLEGAL360 vs. asesoría tradicional"
-          descripcion="Las seis diferencias que se notan el primer mes."
+          titulo="Compara el servicio integral con una asesoría tradicional"
+          descripcion="Las seis diferencias que se notan desde el primer mes."
         />
         <div className={styles.contenedorTabla}>
           <table className={styles.tabla}>

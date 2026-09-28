@@ -1,0 +1,229 @@
+.contenedor {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.datos {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem 1.25rem;
+}
+
+.rejillaCampos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1.25rem;
+}
+
+.mancomunidad {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.zonas {
+  display: grid;
+}
+
+.leyenda {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.rejillaZonas {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.resultado {
+  display: grid;
+  gap: 1.25rem;
+  border-top: 1px solid var(--border);
+  background-color: var(--sand);
+  padding: 1.5rem 1.25rem;
+}
+
+.tituloResultado {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.rejillaTarifas {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.5rem;
+}
+
+.tarjetaDestacada {
+  border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+.tarjetaElegida {
+  border-color: var(--accent);
+  box-shadow: 0 16px 44px -26px rgb(248 80 80 / 0.6);
+}
+
+
+.etiqueta {
+  position: absolute;
+  top: -0.7rem;
+  left: 1.5rem;
+  border-radius: 0.125rem;
+  background-color: var(--accent);
+  padding: 0.2rem 0.6rem;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-foreground);
+}
+
+.nombreTarifa {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.contenidoTarifa {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.importe {
+  margin-top: 0.875rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.sufijo {
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.desglose {
+  margin-top: 0.625rem;
+  display: grid;
+  gap: 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.incluye {
+  margin: 1rem 0 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+  flex: 1;
+  align-content: start;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.itemIncluye {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.iconoCheck {
+  margin-top: 0.15rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+
+
+
+
+.botonPrincipal {
+  margin-top: auto;
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.botonPrincipal:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+
+.botonSecundario {
+  margin-top: auto;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonSecundario:hover {
+  background-color: var(--navy-deep);
+}
+
+
+.notaPrecios {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.solicitud {
+  scroll-margin-top: 6rem;
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+}
+
+.subtituloSolicitud {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.cuerpoSolicitud {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .rejillaZonas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .datos,
+  .resultado,
+  .solicitud {
+    padding: 2rem;
+  }
+
+  .rejillaTarifas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejillaZonas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ComponentType, SVGProps } from 'react';
 import { CheckList } from '@/components/features/CheckList';
+import { TablaTarifaLaboral } from '@/components/features/TablaTarifaLaboral';
 import {
   CtaFinal,
   HeroPrecio,
@@ -10,21 +11,35 @@ import {
 } from '@/components/features/blocks';
 import { ButtonLink } from '@/components/ui/Button';
 import { IconoEscudoCheck, IconoReloj, IconoUsuarios } from '@/components/ui/icons';
-import { PLANES } from '@/core/domain/site';
+import {
+  TARIFA_LABORAL,
+  TRABAJADORES_EJEMPLO,
+} from '@/core/domain/calculadora';
+import { formatearImporte } from '@/core/domain/importe';
+import {
+  AHORRO_PACK_POR_TRABAJADOR,
+  PLANES,
+  PRECIO_LABORAL_POR_TRABAJADOR,
+} from '@/core/domain/site';
+import { calcularCuotaLaboral, cotizarModalidad } from '@/core/use-cases/calcular-cuota';
 import { conBasePath } from '@/utils/base-path';
 import { crearMetadata } from '@/utils/seo';
 import styles from '@/components/features/servicio.module.css';
 
 export const metadata: Metadata = crearMetadata({
-  titulo: 'Asesoría laboral para empresas en España',
-  descripcion:
-    'Gestión laboral para empresas y autónomos con plantilla: nóminas, contratos, altas, bajas y Seguridad Social. Desde 45 €/mes.',
+  titulo: 'Asesoría laboral para empresas: tarifa por trabajador',
+  descripcion: `Nóminas, contratos, altas, bajas y Seguridad Social desde ${PRECIO_LABORAL_POR_TRABAJADOR} por trabajador y mes. Contrátala sola o con departamento jurídico.`,
   ruta: '/asesoria-laboral',
   imagen: '/images/hero-asesoria-laboral.jpg',
   imagenAlt: 'Asesoría laboral para empresas de PROLEGAL360',
 });
 
 const PLAN_LABORAL = PLANES.find((plan) => plan.id === 'laboral')!;
+const [PRIMER_TRAMO] = TARIFA_LABORAL;
+const EJEMPLO = calcularCuotaLaboral(TRABAJADORES_EJEMPLO)!;
+const SOLO_LABORAL = cotizarModalidad('laboral', TRABAJADORES_EJEMPLO);
+const SOLO_JURIDICO = cotizarModalidad('juridico', TRABAJADORES_EJEMPLO);
+const PACK = cotizarModalidad('pack', TRABAJADORES_EJEMPLO);
 
 interface Proceso {
   Icono: ComponentType<SVGProps<SVGSVGElement>>;
@@ -53,20 +68,27 @@ const PROCESOS: Proceso[] = [
   },
 ];
 
+function importe(valor: number | null): string {
+  return valor === null ? '—' : formatearImporte(valor);
+}
+
 export default function AsesoriaLaboralPage() {
   return (
     <>
       <PageHero
-        antetitulo="Pilar laboral"
-        titulo="Asesoría laboral para empresas y autónomos con plantilla"
-        descripcion="Nóminas, seguros sociales, contratos y toda la relación con la Seguridad Social. Con el departamento jurídico detrás para el día en que algo se tuerce."
+        antetitulo="Asesoría laboral"
+        titulo="Asesoría laboral para empresas, con precio por trabajador"
+        descripcion="Nóminas, seguros sociales, contratos y toda la relación con la Seguridad Social. Contrátala sola o con el departamento jurídico detrás para el día en que algo se tuerce."
         imagen={conBasePath('/images/hero-asesoria-laboral.jpg')}
         acciones={
           <HeroPrecio
-            importe="45 €"
-            nota="+ 12 € por nómina"
-            botonTexto="Contratar el plan laboral"
-            botonHref="/alta?plan=laboral"
+            importe={PRECIO_LABORAL_POR_TRABAJADOR}
+            sufijo="/trabajador"
+            nota={`${formatearImporte(PRIMER_TRAMO.nomina)} nómina + ${formatearImporte(
+              PRIMER_TRAMO.gestion,
+            )} gestión · menos por volumen`}
+            botonTexto="Calcular mi coste laboral"
+            botonHref="/calculadora"
           />
         }
       />
@@ -75,70 +97,82 @@ export default function AsesoriaLaboralPage() {
         <div className={styles.rejillaDos}>
           <div>
             <SectionHeader
-              antetitulo="Qué incluye"
-              titulo="Todo lo que necesita tu plantilla, dentro de la cuota"
-              descripcion="Sin extras por cada consulta ni por cada trámite corriente. Lo que ves es lo que pagas."
+              antetitulo="Tarifa laboral"
+              titulo="Pagas por trabajador, y cuantos más son, menos por cada uno"
+              descripcion="Nómina y gestión por trabajador y mes, según el tamaño de tu plantilla. Sin cuota base ni extras por trámites corrientes."
             />
-            <CheckList items={PLAN_LABORAL.incluye} />
+            <TablaTarifaLaboral />
           </div>
 
           <div className={styles.tarjetaNota}>
-            <h3 className={styles.tituloNota}>Qué NO incluye</h3>
-            <p className={styles.textoNota}>{PLAN_LABORAL.noIncluye}</p>
+            <h3 className={styles.tituloNota}>Cómo se calcula tu cuota</h3>
+            <p className={styles.textoNota}>
+              Con {TRABAJADORES_EJEMPLO} trabajadores: {TRABAJADORES_EJEMPLO} ×{' '}
+              {formatearImporte(EJEMPLO.tramo.nomina)} de nómina = {formatearImporte(EJEMPLO.nominas)}{' '}
+              + {TRABAJADORES_EJEMPLO} × {formatearImporte(EJEMPLO.tramo.gestion)} de gestión ={' '}
+              {formatearImporte(EJEMPLO.gestion)} →{' '}
+              <strong className={styles.destacadoNota}>{formatearImporte(EJEMPLO.total)}/mes</strong>{' '}
+              + IVA o IGIC.
+            </p>
+            <ButtonLink href="/calculadora" variant="outline" className={styles.botonNota}>
+              Calcular mi cuota exacta
+            </ButtonLink>
             <div className={styles.subBloqueNota}>
-              <h4 className={styles.tituloSubBloque}>Cómo se calcula tu cuota</h4>
-              <p className={styles.textoNota}>
-                45 € de cuota base más 12 € por cada nómina mensual. Una empresa con 8
-                trabajadores paga 45 + 96 ={' '}
-                <strong className={styles.destacadoNota}>141 €/mes</strong>, sin IVA.
-              </p>
-              <ButtonLink href="/calculadora" variant="outline" className={styles.botonNota}>
-                Calcular mi cuota exacta
-              </ButtonLink>
+              <h4 className={styles.tituloSubBloque}>Qué NO incluye</h4>
+              <p className={styles.textoNota}>{PLAN_LABORAL.noIncluye}</p>
             </div>
           </div>
         </div>
       </Section>
 
       <Section fondo="arena">
-        <SectionHeader
-          antetitulo="Cómo trabajamos el área laboral"
-          titulo="Un circuito mensual que no depende de que tú te acuerdes"
-        />
-        <div className={styles.rejillaTres}>
-          {PROCESOS.map(({ Icono, titulo, texto }) => (
-            <article key={titulo} className={styles.tarjetaProceso}>
-              <Icono className={styles.iconoProceso} />
-              <h3 className={styles.tituloProceso}>{titulo}</h3>
-              <p className={styles.textoProceso}>{texto}</p>
-            </article>
-          ))}
+        <div className={styles.rejillaDos}>
+          <div>
+            <SectionHeader
+              antetitulo="Qué incluye"
+              titulo="Todo lo que necesita tu plantilla, dentro de la cuota"
+              descripcion="Lo que ves es lo que pagas."
+            />
+            <CheckList items={PLAN_LABORAL.incluye} />
+          </div>
+          <div className={styles.rejillaTresApilada}>
+            {PROCESOS.map(({ Icono, titulo, texto }) => (
+              <article key={titulo} className={styles.tarjetaProceso}>
+                <Icono className={styles.iconoProceso} />
+                <h3 className={styles.tituloProceso}>{titulo}</h3>
+                <p className={styles.textoProceso}>{texto}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </Section>
 
       <Section fondo="base">
         <div className={styles.banner}>
           <div>
+            <p className={styles.antetituloBanner}>Promoción laboral + jurídico</p>
             <h2 className={styles.tituloBanner}>
-              El área laboral es donde más caro sale ir sola
+              Añade el departamento jurídico y ahorra {AHORRO_PACK_POR_TRABAJADOR} por trabajador
             </h2>
             <p className={styles.textoBanner}>
-              Un despido mal documentado, un registro de jornada que no existe o una
-              subrogación mal hecha acaban en conciliación. Por eso el plan laboral se
-              contrata casi siempre junto al departamento jurídico: la carta de despido, las
-              alegaciones y la asistencia al SMAC ya entran en la cuota.
+              Un despido mal documentado o una inspección sin preparar salen caros. Con el pack,
+              el mismo equipo que hace tus nóminas redacta tus cartas de despido y contesta a la
+              Inspección. Con {TRABAJADORES_EJEMPLO} trabajadores pagas{' '}
+              <strong>{importe(PACK.cuotaMensual)}/mes</strong> en lugar de{' '}
+              {importe(
+                SOLO_LABORAL.cuotaMensual !== null && SOLO_JURIDICO.cuotaMensual !== null
+                  ? SOLO_LABORAL.cuotaMensual + SOLO_JURIDICO.cuotaMensual
+                  : null,
+              )}
+              : ahorras <strong>{importe(PACK.ahorroMensual)} cada mes</strong>.
             </p>
           </div>
           <div className={styles.botonesBanner}>
-            <ButtonLink
-              href="/departamento-juridico"
-              size="lg"
-              className={styles.botonBannerPrimario}
-            >
-              Consultar al abogado laboral
+            <ButtonLink href="/alta?plan=pack" size="lg" className={styles.botonBannerPrimario}>
+              Contratar el pack
             </ButtonLink>
-            <ButtonLink href="/precios" size="lg" variant="outline">
-              Ver el plan 360 INTEGRAL
+            <ButtonLink href="/departamento-juridico" size="lg" variant="outline">
+              Ver el departamento jurídico
             </ButtonLink>
           </div>
         </div>
@@ -146,7 +180,7 @@ export default function AsesoriaLaboralPage() {
 
       <CtaFinal
         titulo="¿Cuánto pagas ahora por tus nóminas?"
-        descripcion="Dinos cuántos trabajadores tienes y te decimos en un minuto lo que costaría con nosotros."
+        descripcion="Dinos cuántos trabajadores tienes y te decimos al instante lo que costaría con nosotros."
       />
     </>
   );

@@ -65,6 +65,11 @@
   line-height: 1.1;
 }
 
+.heroTituloDestacado {
+  display: block;
+  color: var(--accent);
+}
+
 .heroDescripcion {
   margin-top: 1.5rem;
   max-width: 42rem;
@@ -98,6 +103,23 @@
 .heroBotonSecundario:hover {
   background-color: rgb(255 255 255 / 0.1);
   color: #fff;
+}
+
+.heroGarantias {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.75);
+}
+
+.heroGarantias li::before {
+  content: "✓";
+  margin-right: 0.5rem;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .iconoFlecha {
@@ -382,6 +404,61 @@
   color: var(--destructive);
 }
 
+/* Subvenciones */
+.bandaSubvenciones {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.botonSubvenciones {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonSubvenciones:hover {
+  background-color: var(--navy-deep);
+}
+
+.rejillaSubvenciones {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.tarjetaSubvencion {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  background-color: var(--card);
+  padding: 1.5rem;
+}
+
+.insigniaVigente {
+  display: inline-block;
+  border-radius: 0.125rem;
+  background-color: color-mix(in oklab, var(--accent) 14%, transparent);
+  padding: 0.2rem 0.55rem;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-foreground);
+}
+
+.tituloSubvencion {
+  margin-top: 0.875rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.destinatariosSubvencion {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
 /* Pasos */
 .rejillaPasos {
   display: grid;
@@ -476,7 +553,11 @@
   }
 
   .rejillaPilares {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rejillaSubvenciones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .rejillaEscenarios {
@@ -509,5 +590,13 @@
 
   .rejillaFaq {
     grid-template-columns: 1fr 1.4fr;
+  }
+
+  .rejillaPilares {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .bandaSubvenciones {
+    grid-template-columns: 1fr 1.5fr;
   }
 }

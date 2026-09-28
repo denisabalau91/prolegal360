@@ -8,19 +8,8 @@
   gap: 1.25rem;
 }
 
-.campo {
-  display: block;
-}
 
-.etiqueta {
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1;
-}
 
-.control {
-  margin-top: 0.5rem;
-}
 
 .areaTexto {
   margin-top: 0.5rem;
@@ -121,3 +110,5 @@
     width: auto;
   }
 }
+
+

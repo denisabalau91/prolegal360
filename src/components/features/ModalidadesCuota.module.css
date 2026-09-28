@@ -1,0 +1,130 @@
+.bloque {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+}
+
+.cabecera {
+  margin-bottom: 1.25rem;
+}
+
+.titulo {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.subtitulo {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.rejilla {
+  display: grid;
+  gap: 1rem;
+}
+
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.25rem;
+  transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tarjetaPack {
+  border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+.tarjetaActiva {
+  border-color: var(--accent);
+  box-shadow: 0 14px 40px -26px rgb(248 80 80 / 0.6);
+}
+
+.ahorro {
+  position: absolute;
+  top: -0.7rem;
+  left: 1.25rem;
+  border-radius: 0.125rem;
+  background-color: var(--accent);
+  padding: 0.2rem 0.6rem;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-foreground);
+}
+
+.nombre {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.contenido {
+  margin-top: 0.125rem;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.precio {
+  margin-top: 1rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.precioMedida {
+  font-size: 1rem;
+}
+
+.sufijo {
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.primerMes {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+.boton {
+  margin-top: auto;
+  padding-top: 1rem;
+  align-self: flex-start;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.boton:hover {
+  color: var(--accent);
+}
+
+.botonActivo {
+  color: var(--accent-foreground);
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .bloque {
+    padding: 2rem;
+  }
+
+  .rejilla {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

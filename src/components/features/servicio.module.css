@@ -47,6 +47,17 @@
   width: 100%;
 }
 
+.tarjetaFormulario {
+  scroll-margin-top: 6rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.cuerpoFormulario {
+  margin-top: 1.5rem;
+}
+
 /* Tarjetas "cómo trabajamos" */
 .rejillaTres {
   display: grid;
@@ -80,7 +91,22 @@
   color: var(--muted-foreground);
 }
 
+.rejillaTresApilada {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
 /* Banner destacado */
+.antetituloBanner {
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent-foreground);
+}
+
 .banner {
   display: grid;
   align-items: center;
@@ -215,7 +241,7 @@
   color: color-mix(in oklab, var(--foreground) 85%, transparent);
 }
 
-/* Franja de aviso (primer mes gratis / actuaciones puntuales) */
+/* Franja de aviso destacada */
 .franja {
   border-bottom: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
   background-color: color-mix(in oklab, var(--accent) 10%, transparent);

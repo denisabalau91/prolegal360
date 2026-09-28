@@ -1,3 +1,12 @@
+import {
+  DESCUENTO_PACK_POR_TRABAJADOR,
+  MAXIMO_TRABAJADORES_TARIFA,
+  TARIFA_JURIDICA,
+  TARIFA_LABORAL,
+  type ModalidadId,
+} from '@/core/domain/calculadora';
+import { formatearImporte } from '@/core/domain/importe';
+
 export interface Marca {
   nombre: string;
   nombreCorto: string;
@@ -5,6 +14,8 @@ export interface Marca {
   url: string;
   grupoUrl: string;
   sello: string;
+  lema: string;
+  lemaDestacado: string;
   telefono: string;
   telefonoLimpio: string;
   whatsapp: string;
@@ -19,18 +30,17 @@ export interface Marca {
   cif: string;
 }
 
-export type PlanId = 'laboral' | 'fiscal' | 'juridico' | '360_integral';
+export type PlanId = ModalidadId | 'fiscal';
 
 export interface Plan {
   id: PlanId;
   nombre: string;
-  precioDesde: string;
-  precioSufijo: string;
-  precioExtra?: string;
+  resumenPrecio: string;
   resumen: string;
   incluye: string[];
   noIncluye: string;
   href: string;
+  contratacion: { texto: string; href: string };
   destacado?: boolean;
   etiqueta?: string;
 }
@@ -59,6 +69,8 @@ export const MARCA: Marca = {
   url: 'https://prolegal360-asesores.com',
   grupoUrl: 'https://prolegal360.com',
   sello: '⚖️ Departamento jurídico incluido',
+  lema: 'No solo gestionamos tus nóminas.',
+  lemaDestacado: 'Respaldamos jurídicamente a tu empresa.',
   telefono: '+34 625 814 620',
   telefonoLimpio: '+34625814620',
   whatsapp: '34625814620',
@@ -74,15 +86,30 @@ export const MARCA: Marca = {
   cif: 'B-00000000',
 };
 
+const [PRIMER_TRAMO_LABORAL] = TARIFA_LABORAL;
+const [PRIMER_TRAMO_JURIDICO] = TARIFA_JURIDICA;
+
+export const PRECIO_LABORAL_POR_TRABAJADOR = formatearImporte(
+  PRIMER_TRAMO_LABORAL.nomina + PRIMER_TRAMO_LABORAL.gestion,
+);
+
+export const PRECIO_JURIDICO_DESDE = formatearImporte(PRIMER_TRAMO_JURIDICO.cuota);
+
+export const AHORRO_PACK_POR_TRABAJADOR = formatearImporte(DESCUENTO_PACK_POR_TRABAJADOR);
+
+export const CONDICION_PROMOCION_JURIDICO =
+  'El primer mes gratis es para nuevas altas que contratan el departamento jurídico sin el pack; el pack tiene su propio descuento, todos los meses.';
+
+export const NO_INCLUYE_ACTUACIONES =
+  'No incluye la asistencia a juicios ni al SEMAC, ni tasas, costas o procuradores. Estas actuaciones se presupuestan aparte, por escrito y con precio cerrado antes de empezar: tu cuota no lleva ninguna tarifa procesal fija.';
+
 export const PLANES: Plan[] = [
   {
     id: 'laboral',
-    nombre: 'LABORAL',
-    precioDesde: '45 €',
-    precioSufijo: '/mes',
-    precioExtra: '+ 12 € / nómina',
+    nombre: 'SOLO LABORAL',
+    resumenPrecio: `${PRECIO_LABORAL_POR_TRABAJADOR}/trabajador`,
     resumen:
-      'Toda la gestión laboral de tu plantilla, con los plazos controlados y sin sustos con la Seguridad Social.',
+      'Nóminas y gestión laboral de tu plantilla, con los plazos controlados. Se puede contratar sola, sin departamento jurídico.',
     incluye: [
       'Nóminas mensuales',
       'Seguros sociales (RLC y RNT)',
@@ -92,74 +119,69 @@ export const PLANES: Plan[] = [
       'Certificados de empresa para el SEPE',
     ],
     noIncluye:
-      'No incluye la representación en procedimientos judiciales ni la asistencia a juicio. Las actuaciones puntuales (despidos, inspecciones, expedientes sancionadores) se presupuestan aparte, siempre por escrito y con precio cerrado antes de empezar.',
+      'No incluye el departamento jurídico: cartas de despido, requerimientos o inspecciones se presupuestan aparte. Tampoco incluye la asistencia a juicios ni al SEMAC.',
     href: '/asesoria-laboral',
-  },
-  {
-    id: 'fiscal',
-    nombre: 'FISCAL',
-    precioDesde: 'desde 99 €',
-    precioSufijo: '/mes',
-    resumen:
-      'Cerramos el ejercicio y presentamos tus impuestos a partir de la contabilidad que tú aportas. Impuesto sobre Sociedades incluido.',
-    incluye: [
-      'Cierre y revisión fiscal sobre la contabilidad aportada por el cliente',
-      'IVA (modelos 303, 349 y 390)',
-      'IRPF y retenciones (111, 115, 190)',
-      'Pagos fraccionados (130 y 202)',
-      'Notificaciones electrónicas vigiladas',
-      'Calendario fiscal personalizado',
-      'Impuesto sobre Sociedades incluido sin cargo extra',
-    ],
-    noIncluye:
-      'No incluye el registro contable diario ni el depósito de cuentas anuales en el Registro Mercantil. Tampoco incluye auditoría de cuentas: la contabilidad es responsabilidad de la empresa.',
-    href: '/asesoria-fiscal',
+    contratacion: { texto: 'Contratar', href: '/alta?plan=laboral' },
   },
   {
     id: 'juridico',
-    nombre: 'JURÍDICO',
-    precioDesde: 'desde 39 €',
-    precioSufijo: '/mes',
-    precioExtra: '1.er mes gratis',
+    nombre: 'SOLO JURÍDICO',
+    resumenPrecio: `desde ${PRECIO_JURIDICO_DESDE}/mes`,
     resumen:
-      'Un abogado propio dentro de tu cuota. Cuando llega el problema, lo llevamos nosotros desde el minuto uno.',
+      'Tu departamento jurídico por una cuota fija mensual. Cuando llega el problema, ya conocemos tu empresa.',
     incluye: [
       'Consultas jurídicas ilimitadas',
       'Cartas de despido y de sanción',
       'Revisión de contratos',
       'Contestación a requerimientos de la AEAT y la TGSS',
       'Alegaciones ante la Inspección de Trabajo',
-      'Asistencia al acto de conciliación (SMAC)',
+      'Estrategia y negociación previa en conflictos laborales',
     ],
-    noIncluye:
-      'No incluye procedimientos judiciales, tasas ni costas. Estas actuaciones se presupuestan aparte, con precio cerrado por adelantado y un 30 % de descuento por ser cliente con plan jurídico.',
+    noIncluye: NO_INCLUYE_ACTUACIONES,
     href: '/departamento-juridico',
+    contratacion: { texto: 'Contratar', href: '/alta?plan=juridico' },
   },
   {
-    id: '360_integral',
-    nombre: '360 INTEGRAL',
-    precioDesde: 'desde 199 €',
-    precioSufijo: '/mes',
+    id: 'pack',
+    nombre: 'PACK LABORAL + JURÍDICO',
+    resumenPrecio: `${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador`,
     resumen:
-      'Los tres pilares en una sola cuota, con descuento por agrupación y un único interlocutor para todo.',
+      'Nóminas, gestión y departamento jurídico en una sola cuota, con descuento y un único interlocutor.',
     incluye: [
-      'Todo el plan LABORAL',
-      'Todo el plan FISCAL',
-      'Todo el plan JURÍDICO',
-      'Descuento por agrupación de los tres pilares',
-      'Interlocutor único para laboral, fiscal y jurídico',
-      'Toda tu documentación organizada y siempre disponible',
+      'Todo SOLO LABORAL',
+      'Todo SOLO JURÍDICO',
+      `${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador en la laboral, todos los meses`,
+      'Interlocutor único para laboral y jurídico',
+      'El jurídico ya conoce tus nóminas y contratos',
+    ],
+    noIncluye: NO_INCLUYE_ACTUACIONES,
+    href: '/precios',
+    contratacion: { texto: 'Contratar el pack', href: '/alta?plan=pack' },
+    destacado: true,
+    etiqueta: `Ahorra ${AHORRO_PACK_POR_TRABAJADOR} por trabajador`,
+  },
+  {
+    id: 'fiscal',
+    nombre: 'FISCAL Y CONTABILIDAD',
+    resumenPrecio: 'Presupuesto cerrado en 24 h',
+    resumen:
+      'Presentamos tus impuestos a partir de la contabilidad que nos aportas. Impuesto sobre Sociedades incluido.',
+    incluye: [
+      'Trabajamos sobre tu balance y tu balance de sumas y saldos',
+      'IVA o IGIC, IRPF y retenciones',
+      'Pagos fraccionados',
+      'Cierre fiscal del ejercicio',
+      'Impuesto sobre Sociedades',
+      'Notificaciones electrónicas vigiladas',
     ],
     noIncluye:
-      'No incluye el registro contable diario, el depósito de cuentas anuales, los procedimientos judiciales, las tasas ni las costas. Las actuaciones puntuales se presupuestan aparte, por escrito y con un 30 % de descuento.',
-    href: '/precios',
-    destacado: true,
-    etiqueta: 'El más contratado',
+      'No incluye el registro contable diario ni el depósito de cuentas anuales en el Registro Mercantil. Tampoco es una auditoría: la contabilidad es responsabilidad de la empresa.',
+    href: '/asesoria-fiscal',
+    contratacion: { texto: 'Pedir presupuesto', href: '/asesoria-fiscal#presupuesto' },
   },
 ];
 
-export const DISCLAIMER_CUOTA =
-  'Cuota orientativa. Promoción válida para nuevas altas: el primer mes de servicio jurídico es gratuito y a partir del segundo mes se aplica la tarifa según los trabajadores en alta. Sin permanencia. La tarifa se revisa si varía la plantilla. Precios sin IVA. El servicio fiscal se presta a partir de la contabilidad aportada por el cliente y no incluye el registro contable diario ni el depósito de cuentas anuales.';
+export const DISCLAIMER_CUOTA = `Cuota orientativa calculada con las tarifas publicadas. La asesoría laboral se factura por trabajador y mes según el tramo de plantilla, y el departamento jurídico con una cuota mensual según los trabajadores en alta. Con más de ${MAXIMO_TRABAJADORES_TARIFA} trabajadores, presupuesto personalizado. En el pack laboral + jurídico, el departamento jurídico mantiene su tarifa y la asesoría laboral cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador y mes. Promoción para nuevas altas: primer mes gratis del departamento jurídico contratado sin el pack, no acumulable al descuento del pack; a partir del segundo mes se aplica la tarifa completa. La asistencia a juicios o al SEMAC se presupuesta aparte. La asesoría fiscal y contable se presupuesta a medida en 24 h laborables. Sin permanencia. Precios sin IVA ni IGIC.`;
 
 export const NAV_ITEMS: NavItem[] = [
   {
@@ -172,14 +194,24 @@ export const NAV_ITEMS: NavItem[] = [
         desc: 'Nóminas, seguros sociales y contratos',
       },
       {
-        label: 'Asesoría fiscal',
-        href: '/asesoria-fiscal',
-        desc: 'Cierre, impuestos e IS incluido',
+        label: 'Departamento jurídico',
+        href: '/departamento-juridico',
+        desc: 'Respaldo jurídico recurrente para tu empresa',
       },
       {
-        label: 'Abogado laboral',
-        href: '/departamento-juridico',
-        desc: 'Defensa laboral para empresas',
+        label: 'Fiscal y contabilidad',
+        href: '/asesoria-fiscal',
+        desc: 'Presupuesto cerrado en 24 h',
+      },
+      {
+        label: 'Subvenciones',
+        href: '/subvenciones',
+        desc: 'Nuevos autónomos y contratación',
+      },
+      {
+        label: 'Administración de fincas',
+        href: '/administracion-de-fincas',
+        desc: 'Tres tarifas y presupuesto al instante',
       },
       {
         label: 'Sectores',
@@ -195,7 +227,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'La firma',
     href: '/sobre-nosotros',
     hijos: [
-      { label: 'Sobre nosotros', href: '/sobre-nosotros', desc: 'Equipo y trayectoria' },
+      { label: 'Sobre nosotros', href: '/sobre-nosotros', desc: 'Equipo y forma de trabajar' },
       { label: 'Casos de éxito', href: '/casos-de-exito', desc: 'Testimonios de clientes' },
       { label: 'Recursos', href: '/recursos', desc: 'Checklist de cierre fiscal' },
     ],

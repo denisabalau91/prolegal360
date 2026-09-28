@@ -1,11 +1,18 @@
-import type { FaqItem } from '@/core/domain/site';
+import { TARIFAS_FINCA } from '@/core/domain/fincas';
+import { formatearImporte } from '@/core/domain/importe';
+import {
+  AHORRO_PACK_POR_TRABAJADOR,
+  PRECIO_JURIDICO_DESDE,
+  PRECIO_LABORAL_POR_TRABAJADOR,
+  type FaqItem,
+} from '@/core/domain/site';
 
-export interface Pilar {
+export interface ServicioDestacado {
   nombre: string;
   descripcion: string;
   precio: string;
   precioSufijo: string;
-  precioExtra?: string;
+  precioExtra: string;
   href: string;
 }
 
@@ -31,32 +38,44 @@ export interface Testimonio {
   empresa: string;
 }
 
-export const PILARES: Pilar[] = [
+const [TARIFA_FINCA_BASICA] = TARIFAS_FINCA;
+
+export const SERVICIOS: ServicioDestacado[] = [
   {
-    nombre: 'LABORAL',
+    nombre: 'LABORAL + JURÍDICO',
     descripcion:
-      'Toda la gestión laboral de tu plantilla, con los plazos controlados y sin sustos con la Seguridad Social.',
-    precio: '45 €',
-    precioSufijo: '/mes',
-    precioExtra: '+ 12 € / nómina',
+      'Nóminas y gestión laboral con el departamento jurídico detrás. Contrátalos por separado o juntos con descuento.',
+    precio: PRECIO_LABORAL_POR_TRABAJADOR,
+    precioSufijo: '/trabajador',
+    precioExtra: `Jurídico desde ${PRECIO_JURIDICO_DESDE}/mes · 1.er mes gratis`,
     href: '/asesoria-laboral',
   },
   {
-    nombre: 'FISCAL',
+    nombre: 'FISCAL Y CONTABILIDAD',
     descripcion:
-      'Cerramos el ejercicio y presentamos tus impuestos a partir de la contabilidad que tú aportas. Impuesto sobre Sociedades incluido.',
-    precio: 'desde 99 €',
-    precioSufijo: '/mes',
+      'Impuestos y cierre a partir de la contabilidad que nos aportas. Impuesto sobre Sociedades incluido.',
+    precio: 'Presupuesto',
+    precioSufijo: 'en 24 h',
+    precioExtra: 'Cerrado y por escrito',
     href: '/asesoria-fiscal',
   },
   {
-    nombre: 'ABOGADO LABORAL',
+    nombre: 'SUBVENCIONES',
     descripcion:
-      'Defensa laboral para empresas ante despidos, inspecciones y conciliaciones en toda España.',
-    precio: 'desde 39 €',
-    precioSufijo: '/mes',
-    precioExtra: '1.er mes gratis',
-    href: '/departamento-juridico',
+      'Te decimos si encajas, preparamos la solicitud y la presentamos en plazo. Sin que pierdas una ayuda por desconocerla.',
+    precio: 'Vigentes',
+    precioSufijo: 'ahora',
+    precioExtra: 'Nuevos autónomos · Contratación',
+    href: '/subvenciones',
+  },
+  {
+    nombre: 'ADMINISTRACIÓN DE FINCAS',
+    descripcion:
+      'Tres tarifas claras para tu comunidad o mancomunidad, con el presupuesto calculado al momento.',
+    precio: formatearImporte(TARIFA_FINCA_BASICA.vivienda),
+    precioSufijo: '/vivienda',
+    precioExtra: 'Básica, Estándar o Zen',
+    href: '/administracion-de-fincas',
   },
 ];
 
@@ -80,7 +99,7 @@ export const ESCENARIOS: Escenario[] = [
     titulo: 'Un despido impugnado',
     situacion: 'El trabajador presenta papeleta de conciliación y reclama improcedencia.',
     respuesta:
-      'Redactamos la carta, calculamos la indemnización y asistimos al SMAC contigo.',
+      'Redactamos la carta y calculamos la indemnización. Si hay que ir al SEMAC, te damos antes presupuesto cerrado.',
   },
   {
     icono: 'gavel',
@@ -92,14 +111,14 @@ export const ESCENARIOS: Escenario[] = [
 ];
 
 export const CONCLUSION_ESCENARIOS =
-  'Con una asesoría normal: te derivan a un abogado externo y pagas aparte, desde 1.500 €. Con PROLEGAL360: lo llevamos nosotros desde el minuto uno, con presupuesto cerrado por adelantado y un 30 % de descuento por ser cliente.';
+  'Con una asesoría normal: te derivan a un abogado externo que no conoce tu empresa y empiezas de cero. Con PROLEGAL360: tu departamento jurídico ya está dentro del expediente desde el minuto uno. Y si el asunto llega a juicio o al SEMAC, te damos presupuesto cerrado por escrito antes de empezar.';
 
 export const COMPARATIVA: string[] = [
-  'Precio publicado en la web',
-  'Servicio jurídico propio',
+  'Tarifas publicadas en la web',
+  'Departamento jurídico propio',
+  'Sin tarifa procesal fija en la cuota',
+  'Presupuesto fiscal cerrado en 24 h',
   'Sin permanencia',
-  'Respuesta en 24 h laborables',
-  'Documentación siempre disponible',
   'Sin minutas sorpresa',
 ];
 
@@ -153,43 +172,41 @@ export const TESTIMONIOS: Testimonio[] = [
 
 export const FAQS_HOME: FaqItem[] = [
   {
-    pregunta: '¿Por qué publicáis los precios y otras asesorías no?',
+    pregunta: '¿Por qué publicáis los precios?',
     respuesta:
-      'Porque el precio de una asesoría se puede calcular: depende de la forma jurídica, del número de trabajadores y del volumen de facturas. Publicarlo evita la llamada comercial de tanteo y te permite compararnos en un minuto con nuestra calculadora de cuota.',
+      'Porque la gestión laboral, el departamento jurídico y la administración de fincas se pueden calcular: dependen del número de trabajadores o de viviendas. Publicarlo te permite saber lo que pagarías en un minuto, sin llamada comercial de tanteo.',
   },
   {
-    pregunta: '¿Qué significa que el departamento jurídico está incluido?',
+    pregunta: '¿Qué significa «departamento jurídico incluido»?',
     respuesta:
-      'Que las consultas jurídicas ilimitadas, las cartas de despido y sanción, la revisión de contratos, la contestación a requerimientos de la AEAT y la TGSS, las alegaciones ante la Inspección de Trabajo y la asistencia al SMAC entran en tu cuota mensual. No incluye procedimientos judiciales, tasas ni costas, que se presupuestan aparte con precio cerrado y un 30 % de descuento.',
+      'Que por una cuota fija mensual tienes consultas jurídicas ilimitadas, cartas de despido y sanción, revisión de contratos, contestación a requerimientos de la AEAT y la TGSS y alegaciones ante la Inspección de Trabajo. La asistencia a juicios o al SEMAC no forma parte de la cuota: se presupuesta aparte, por escrito y antes de empezar.',
   },
   {
-    pregunta: '¿El primer mes de servicio jurídico es realmente gratuito?',
-    respuesta:
-      'Sí. La promoción es válida para nuevas altas: el primer mes del plan jurídico es gratuito y a partir del segundo mes se aplica la tarifa que corresponda según los trabajadores en alta. Sin permanencia.',
+    pregunta: '¿Puedo contratar solo la asesoría laboral?',
+    respuesta: `Sí. La asesoría laboral se contrata sola, sin departamento jurídico. También puedes contratar solo el departamento jurídico, o ambos juntos en el pack: el jurídico mantiene su precio y la laboral te cuesta ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador, todos los meses.`,
   },
   {
-    pregunta: '¿Incluís el Impuesto sobre Sociedades?',
+    pregunta: '¿Qué promociones tenéis?',
+    respuesta: `Si contratas el departamento jurídico, el primer mes es gratis para nuevas altas. A partir del segundo mes se aplica la tarifa que corresponda según los trabajadores en alta. En el pack laboral + jurídico no se suma esta promoción: su ventaja son los ${AHORRO_PACK_POR_TRABAJADOR} menos por trabajador cada mes. Sin permanencia.`,
+  },
+  {
+    pregunta: '¿Por qué la asesoría fiscal no tiene precio publicado?',
     respuesta:
-      'Sí, el Impuesto sobre Sociedades (modelos 200 y 202) está incluido en el plan fiscal sin cargo extra. Lo que no incluye el plan fiscal es el registro contable diario ni el depósito de cuentas anuales.',
+      'Porque depende de tu contabilidad: volumen de operaciones, régimen de IVA o IGIC y actividad. En lugar de una tarifa genérica que te haga pagar de más, te enviamos un presupuesto cerrado en 24 horas laborables. Presentamos también el Impuesto sobre Sociedades.',
   },
   {
     pregunta: '¿Tengo que llevar yo la contabilidad?',
     respuesta:
-      'El plan fiscal se presta a partir de la contabilidad que aporta el cliente: tú registras el día a día y nosotros revisamos, ajustamos, cerramos el ejercicio y presentamos los impuestos. Si necesitas que también llevemos el registro contable diario, lo presupuestamos aparte.',
+      'Sí. La asesoría fiscal se presta a partir de la contabilidad que aporta el cliente: nos basta con el balance y el balance de sumas y saldos. Con eso revisamos, cerramos el ejercicio y presentamos los impuestos.',
   },
   {
     pregunta: '¿Hay permanencia?',
     respuesta:
-      'No. Ninguno de nuestros planes tiene permanencia. Si decides irte, te entregamos toda tu documentación en formato digital y colaboramos con la nueva asesoría.',
+      'No. Ninguno de nuestros servicios tiene permanencia. Si decides irte, te entregamos toda tu documentación en formato digital y colaboramos con la nueva asesoría.',
   },
   {
-    pregunta: '¿Cómo funciona el cambio desde mi asesoría actual?',
+    pregunta: '¿Los precios llevan impuestos?',
     respuesta:
-      'El traspaso es gratuito y lo gestionamos nosotros: pedimos la documentación a tu asesor anterior y mantenemos un mes de solapamiento sin coste para que no se quede ningún trámite en el aire.',
-  },
-  {
-    pregunta: '¿Los precios llevan IVA?',
-    respuesta:
-      'Todos los precios publicados son sin IVA. Se factura mensualmente con el IVA vigente aplicable a los servicios profesionales.',
+      'Todos los precios publicados son sin impuestos. Se factura mensualmente con el IVA o el IGIC que corresponda según tu territorio.',
   },
 ];

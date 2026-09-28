@@ -1,32 +1,32 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type {
-  DatosSimulacion,
-  FormaJuridica,
-  PilarId,
-  RangoFacturas,
-  ResultadoCuota,
+import {
+  MODALIDADES,
+  TRABAJADORES_EJEMPLO,
+  type CotizacionModalidad,
+  type DatosSimulacion,
+  type ModalidadId,
+  type ResultadoCuota,
+  type ServicioEmpresaId,
 } from '@/core/domain/calculadora';
-import { calcularCuota } from '@/core/use-cases/calcular-cuota';
+import { calcularCuota, cotizarModalidades } from '@/core/use-cases/calcular-cuota';
 import type { SimulacionesGateway, SimulacionPayload } from '@/core/ports/simulaciones-gateway';
+import { aEntero, esEmailValido, soloDigitos } from '@/utils/validacion';
 
 const RETARDO_GUARDADO_MS = 900;
-const PATRON_EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const MAXIMO_TRABAJADORES_ENTRADA = 9999;
+const ERROR_PROPUESTA = 'No hemos podido enviar la propuesta. Inténtalo de nuevo o escríbenos.';
 
 export interface EstadoCalculadora {
-  paso: number;
-  setPaso: (paso: number) => void;
-  formaJuridica: FormaJuridica;
-  setFormaJuridica: (forma: FormaJuridica) => void;
   trabajadoresTexto: string;
   setTrabajadoresTexto: (valor: string) => void;
   trabajadores: number;
-  facturas: RangoFacturas;
-  setFacturas: (rango: RangoFacturas) => void;
-  pilares: PilarId[];
-  alternarPilar: (pilar: PilarId) => void;
+  servicios: ServicioEmpresaId[];
+  alternarServicio: (servicio: ServicioEmpresaId) => void;
+  elegirModalidad: (modalidad: ModalidadId) => void;
   resultado: ResultadoCuota;
+  modalidades: CotizacionModalidad[];
   email: string;
   setEmail: (email: string) => void;
   enviandoPropuesta: boolean;
@@ -39,11 +39,9 @@ export function useCalculadoraCuota(
   gateway: SimulacionesGateway,
   origen: string,
 ): EstadoCalculadora {
-  const [paso, setPaso] = useState(1);
-  const [formaJuridica, setFormaJuridica] = useState<FormaJuridica>('sociedad');
-  const [trabajadoresTexto, setTrabajadoresTexto] = useState('3');
-  const [facturas, setFacturas] = useState<RangoFacturas>('menos_50');
-  const [pilares, setPilares] = useState<PilarId[]>(['laboral', 'fiscal', 'juridico']);
+  const [trabajadoresTexto, setTrabajadoresTextoCrudo] = useState(String(TRABAJADORES_EJEMPLO));
+  const [servicios, setServicios] = useState<ServicioEmpresaId[]>(['laboral', 'juridico']);
+  const [interactuado, setInteractuado] = useState(false);
   const [simulacionId, setSimulacionId] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [enviandoPropuesta, setEnviandoPropuesta] = useState(false);
@@ -51,36 +49,51 @@ export function useCalculadoraCuota(
   const [errorPropuesta, setErrorPropuesta] = useState('');
   const ultimaSimulacionGuardada = useRef('');
 
-  const trabajadores =
-    trabajadoresTexto === '' ? 0 : Math.max(0, parseInt(trabajadoresTexto, 10) || 0);
+  const trabajadores = Math.min(aEntero(trabajadoresTexto, 1), MAXIMO_TRABAJADORES_ENTRADA);
+
+  const setTrabajadoresTexto = (valor: string) => {
+    setTrabajadoresTextoCrudo(soloDigitos(valor).slice(0, 4));
+    setInteractuado(true);
+  };
+
+  const alternarServicio = (servicio: ServicioEmpresaId) => {
+    setServicios((actuales) =>
+      actuales.includes(servicio)
+        ? actuales.filter((id) => id !== servicio)
+        : [...actuales, servicio],
+    );
+    setInteractuado(true);
+  };
+
+  const elegirModalidad = (modalidad: ModalidadId) => {
+    const serviciosModalidad = MODALIDADES.find((opcion) => opcion.id === modalidad)?.servicios;
+    if (!serviciosModalidad) {
+      return;
+    }
+    setServicios((actuales) => [
+      ...serviciosModalidad,
+      ...(actuales.includes('fiscal') ? (['fiscal'] as const) : []),
+    ]);
+    setInteractuado(true);
+  };
 
   const datos = useMemo<DatosSimulacion>(
-    () => ({
-      forma_juridica: formaJuridica,
-      num_trabajadores: trabajadores,
-      num_facturas: facturas,
-      pilares,
-    }),
-    [formaJuridica, trabajadores, facturas, pilares],
+    () => ({ num_trabajadores: trabajadores, servicios }),
+    [trabajadores, servicios],
   );
 
   const resultado = useMemo(() => calcularCuota(datos), [datos]);
-
-  const alternarPilar = (pilar: PilarId) => {
-    setPilares((actuales) =>
-      actuales.includes(pilar)
-        ? actuales.filter((id) => id !== pilar)
-        : [...actuales, pilar],
-    );
-  };
+  const modalidades = useMemo(() => cotizarModalidades(trabajadores), [trabajadores]);
 
   const construirPayload = useCallback(
     (): SimulacionPayload => ({
       ...datos,
-      total_primer_mes: resultado.totalPrimerMes,
-      total_recurrente: resultado.totalRecurrente,
-      total_360: resultado.total360,
+      modalidad: resultado.modalidad,
+      cuota_mensual: resultado.cuotaMensual,
+      primer_mes: resultado.primerMes,
+      descuento_pack: resultado.descuentoPack,
       presupuesto_personalizado: resultado.requierePresupuesto,
+      presupuesto_fiscal: resultado.incluyeFiscal,
       desglose: resultado.lineas,
       origen,
     }),
@@ -100,13 +113,13 @@ export function useCalculadoraCuota(
         if (!respuesta.ok) {
           console.error('[Calculadora] No se pudo actualizar la simulación:', respuesta.error);
         }
+        return;
+      }
+      const respuesta = await gateway.crear(payload);
+      if (respuesta.ok && respuesta.data?._id) {
+        setSimulacionId(respuesta.data._id);
       } else {
-        const respuesta = await gateway.crear(payload);
-        if (respuesta.ok && respuesta.data?._id) {
-          setSimulacionId(respuesta.data._id);
-        } else {
-          console.error('[Calculadora] No se pudo guardar la simulación:', respuesta.error);
-        }
+        console.error('[Calculadora] No se pudo guardar la simulación:', respuesta.error);
       }
     } catch (error) {
       console.error('[Calculadora] Error guardando la simulación:', error);
@@ -114,18 +127,18 @@ export function useCalculadoraCuota(
   }, [datos, construirPayload, simulacionId, gateway]);
 
   useEffect(() => {
-    if (paso !== 3) {
+    if (!interactuado || datos.servicios.length === 0) {
       return;
     }
     const temporizador = setTimeout(() => {
       void guardarSimulacion();
     }, RETARDO_GUARDADO_MS);
     return () => clearTimeout(temporizador);
-  }, [paso, guardarSimulacion]);
+  }, [interactuado, datos, guardarSimulacion]);
 
   const enviarPropuesta = async () => {
     setErrorPropuesta('');
-    if (!PATRON_EMAIL.test(email)) {
+    if (!esEmailValido(email)) {
       setErrorPropuesta('Introduce un email válido para enviarte la propuesta.');
       return;
     }
@@ -134,39 +147,31 @@ export function useCalculadoraCuota(
       const respuesta = await gateway.enviarPropuesta({
         ...construirPayload(),
         simulacion_id: simulacionId,
-        email,
+        email: email.trim(),
       });
       if (respuesta.ok) {
         setPropuestaEnviada(true);
       } else {
         console.error('[Calculadora] Error enviando la propuesta:', respuesta.error);
-        setErrorPropuesta(
-          'No hemos podido enviar la propuesta. Inténtalo de nuevo o escríbenos.',
-        );
+        setErrorPropuesta(ERROR_PROPUESTA);
       }
     } catch (error) {
       console.error('[Calculadora] Error enviando la propuesta:', error);
-      setErrorPropuesta(
-        'No hemos podido enviar la propuesta. Inténtalo de nuevo o escríbenos.',
-      );
+      setErrorPropuesta(ERROR_PROPUESTA);
     } finally {
       setEnviandoPropuesta(false);
     }
   };
 
   return {
-    paso,
-    setPaso,
-    formaJuridica,
-    setFormaJuridica,
     trabajadoresTexto,
     setTrabajadoresTexto,
     trabajadores,
-    facturas,
-    setFacturas,
-    pilares,
-    alternarPilar,
+    servicios,
+    alternarServicio,
+    elegirModalidad,
     resultado,
+    modalidades,
     email,
     setEmail,
     enviandoPropuesta,

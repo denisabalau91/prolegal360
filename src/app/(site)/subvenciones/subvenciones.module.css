@@ -1,0 +1,196 @@
+.botonHero {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.botonHero:hover {
+  background-color: color-mix(in oklab, var(--accent) 90%, transparent);
+}
+
+.iconoBoton {
+  width: 1rem;
+  height: 1rem;
+}
+
+.rejillaSubvenciones {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  background-color: var(--card);
+  padding: 2rem;
+  box-shadow: 0 24px 60px -44px rgb(15 23 42 / 0.5);
+}
+
+.cabeceraTarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.numero {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+  color: color-mix(in oklab, var(--accent) 70%, transparent);
+}
+
+.insignia {
+  border-radius: 9999px;
+  background-color: color-mix(in oklab, var(--accent) 14%, transparent);
+  padding: 0.25rem 0.75rem;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-foreground);
+}
+
+.titulo {
+  margin-top: 1.25rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--primary);
+}
+
+.destinatarios {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-foreground);
+}
+
+.descripcion {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+
+.queHacemos {
+  margin-top: 1.5rem;
+  flex: 1;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+
+.antetituloLista {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted-foreground);
+}
+
+.botonTarjeta {
+  margin-top: 1.75rem;
+  align-self: flex-start;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.botonTarjeta:hover {
+  background-color: var(--navy-deep);
+}
+
+.nota {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.rejillaPasos {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.paso {
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background-color: rgb(255 255 255 / 0.05);
+  padding: 1.5rem;
+}
+
+.numeroPaso {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.tituloPaso {
+  margin-top: 0.75rem;
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.textoPaso {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.75);
+}
+
+.rejillaFormulario {
+  display: grid;
+  gap: 3rem;
+}
+
+.tarjetaFormulario {
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.75rem;
+}
+
+.tituloFormulario {
+  font-family: var(--font-sora), ui-sans-serif, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.subtituloFormulario {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.cuerpoFormulario {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .rejillaSubvenciones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rejillaPasos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tarjetaFormulario {
+    padding: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rejillaPasos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .rejillaFormulario {
+    grid-template-columns: 1fr 1.15fr;
+  }
+}

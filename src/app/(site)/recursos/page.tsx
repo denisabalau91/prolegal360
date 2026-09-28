@@ -184,7 +184,7 @@ export default function RecursosPage() {
 
       <CtaFinal
         titulo="¿Prefieres que el cierre lo hagamos nosotros?"
-        descripcion="El plan fiscal incluye el cierre, todos los modelos y el Impuesto sobre Sociedades desde 99 €/mes."
+        descripcion="Trabajamos a partir de tu balance y sumas y saldos, Impuesto sobre Sociedades incluido. Te enviamos presupuesto cerrado en 24 h."
       />
     </>
   );

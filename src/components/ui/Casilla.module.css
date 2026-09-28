@@ -1,0 +1,105 @@
+.casilla {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  transition:
+    border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.casilla:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+.casillaMarcada,
+.casillaMarcada:hover {
+  border-color: var(--accent);
+  background-color: color-mix(in oklab, var(--accent) 7%, transparent);
+}
+
+.boton {
+  display: flex;
+  flex: 1;
+  min-width: 12rem;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.9rem 1rem;
+  text-align: left;
+  outline: none;
+}
+
+.boton:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ring);
+}
+
+.marca {
+  margin-top: 0.125rem;
+  display: flex;
+  height: 1.25rem;
+  width: 1.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  background-color: var(--card);
+}
+
+.casillaMarcada .marca {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.icono {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.textos {
+  flex: 1;
+}
+
+.cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.etiqueta {
+  border-radius: 0.125rem;
+  background-color: color-mix(in oklab, var(--accent) 14%, transparent);
+  padding: 0.125rem 0.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-foreground);
+}
+
+.descripcion {
+  margin-top: 0.25rem;
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.complemento {
+  padding: 0 1rem 0.9rem 3.1rem;
+}
+
+@media (min-width: 480px) {
+  .complemento {
+    padding: 0.5rem 1rem 0.5rem 0;
+  }
+}

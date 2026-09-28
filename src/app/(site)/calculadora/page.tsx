@@ -4,9 +4,9 @@ import { CtaFinal, PageHero, Section } from '@/components/features/blocks';
 import { crearMetadata } from '@/utils/seo';
 
 export const metadata: Metadata = crearMetadata({
-  titulo: 'Calculadora de precios de asesoría para empresas',
+  titulo: 'Calculadora de coste laboral y departamento jurídico',
   descripcion:
-    'Calcula en un minuto el precio de tu asesoría laboral, fiscal y jurídica. Resultado inmediato, sin registro y sin dejar tus datos.',
+    'Calcula al instante el coste de tus nóminas y gestión laboral, añade el departamento jurídico y compara las tres formas de contratar. Sin registro.',
   ruta: '/calculadora',
 });
 
@@ -14,9 +14,9 @@ export default function CalculadoraPage() {
   return (
     <>
       <PageHero
-        antetitulo="Calculadora de cuota"
-        titulo="Calcula tu cuota en 1 minuto"
-        descripcion="Sin registro, sin llamada y sin dejar tus datos. Tres preguntas y ves el desglose completo, con el primer mes de servicio jurídico ya descontado."
+        antetitulo="Calculadora de coste laboral"
+        titulo="Conoce tu coste laboral al instante"
+        descripcion="Sin registro, sin llamada y sin dejar tus datos. Indica tu plantilla, añade el departamento jurídico si lo quieres y compara solo laboral, solo jurídico o el pack con descuento."
       />
       <Section fondo="base">
         <CalculadoraCuota origen="/calculadora" />

@@ -29,7 +29,7 @@ export function crearMetadata({
   descripcion,
   ruta,
   imagen = IMAGEN_SOCIAL_PREDETERMINADA,
-  imagenAlt = `${MARCA.nombre}: asesoría y servicios jurídicos para empresas`,
+  imagenAlt = `${MARCA.nombre}: asesoría integral para empresas`,
   noIndex = false,
 }: CrearMetadataParams): Metadata {
   const canonical = urlCanonica(ruta);
@@ -148,7 +148,7 @@ export const DATOS_ESTRUCTURADOS_SITIO: Record<string, unknown> = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Abogado laboral para empresas',
+              name: 'Departamento jurídico para empresas',
               url: `${MARCA.url}/departamento-juridico/`,
             },
           },
@@ -164,8 +164,24 @@ export const DATOS_ESTRUCTURADOS_SITIO: Record<string, unknown> = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Asesoría fiscal para empresas y autónomos',
+              name: 'Asesoría fiscal y contabilidad',
               url: `${MARCA.url}/asesoria-fiscal/`,
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Gestión de subvenciones',
+              url: `${MARCA.url}/subvenciones/`,
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Administración de fincas',
+              url: `${MARCA.url}/administracion-de-fincas/`,
             },
           },
         ],

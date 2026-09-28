@@ -1,0 +1,11 @@
+.grupo {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.leyenda {
+  margin-bottom: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+}

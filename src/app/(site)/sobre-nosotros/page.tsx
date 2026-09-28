@@ -9,7 +9,7 @@ import styles from '@/app/(site)/sobre-nosotros/sobre-nosotros.module.css';
 export const metadata: Metadata = crearMetadata({
   titulo: 'Abogados y asesores de empresas: quiénes somos',
   descripcion:
-    'Conoce PROLEGAL360 Asesores, la firma que integra gestión laboral y fiscal con un departamento jurídico especializado en empresas.',
+    'Conoce PROLEGAL360 Asesores, la asesoría integral que une gestión laboral, departamento jurídico, fiscal, subvenciones y administración de fincas.',
   ruta: '/sobre-nosotros',
   imagen: '/images/hero-sobre-nosotros.jpg',
   imagenAlt: 'Equipo de abogados y asesores de empresas de PROLEGAL360',
@@ -24,7 +24,7 @@ const PRINCIPIOS: Principio[] = [
   {
     titulo: 'El precio, publicado',
     texto:
-      'Creemos que pedir presupuesto para una asesoría es una pérdida de tiempo para todos. Nuestras tarifas están en la web y cualquiera puede calcular su cuota sin dejar sus datos.',
+      'Todo lo que se puede calcular está publicado: la asesoría laboral, el departamento jurídico y la administración de fincas. Lo que depende de tu contabilidad te lo presupuestamos cerrado en 24 h.',
   },
   {
     titulo: 'El jurídico, dentro',
@@ -71,15 +71,16 @@ export default function SobreNosotrosPage() {
                 >
                   PROLEGAL360
                 </a>
-                , un despacho especializado en derecho laboral. Durante años
-                vimos llegar el mismo caso una y otra vez: una empresa con una inspección
+                , un despacho especializado en derecho laboral. Una y otra vez veíamos
+                llegar el mismo caso: una empresa con una inspección
                 encima, con su asesoría diciéndole que «eso ya es jurídico» y con una minuta
                 de abogado externo de cuatro cifras.
               </p>
               <p>
-                Montamos PROLEGAL360 Asesores para cerrar ese hueco. Llevamos la gestión
-                laboral y fiscal del día a día, con precios publicados, y metemos el
-                departamento jurídico dentro de la cuota mensual. Cuando llega el problema,
+                Montamos PROLEGAL360 Asesores para cerrar ese hueco. No solo gestionamos tus
+                nóminas: respaldamos jurídicamente a tu empresa. Llevamos la gestión laboral,
+                fiscal y contable, las subvenciones y la administración de fincas, con el
+                departamento jurídico siempre al lado. Cuando llega el problema,
                 ya estamos dentro del expediente.
               </p>
               <p>

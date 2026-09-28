@@ -50,7 +50,7 @@ const CASOS: Caso[] = [
     situacion:
       'Un trabajador con nueve años de antigüedad impugnó su despido objetivo y reclamó improcedencia más daños.',
     queHicimos:
-      'Redactamos la carta con la causa correctamente motivada, recalculamos la indemnización y la pusimos a disposición en plazo. Asistimos al acto de conciliación en el SMAC.',
+      'Redactamos la carta con la causa correctamente motivada, recalculamos la indemnización y la pusimos a disposición en plazo. Asistimos al acto de conciliación en el SEMAC.',
     resultado:
       'Acuerdo en conciliación por el importe de la indemnización legal, sin juicio y sin salarios de tramitación.',
   },

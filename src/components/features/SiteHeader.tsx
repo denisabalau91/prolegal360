@@ -143,7 +143,7 @@ export function SiteHeader() {
             ))}
             <div className={styles.menuMovilAcciones}>
               <ButtonLink href="/calculadora" className={styles.ctaMovil}>
-                Calcula tu cuota en 1 minuto
+                Calcula tu coste laboral
               </ButtonLink>
               <ButtonLink href="/contacto" variant="outline">
                 Reserva 20 min gratis

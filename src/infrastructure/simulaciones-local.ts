@@ -1,4 +1,4 @@
-import { formatearImporte } from '@/core/domain/calculadora';
+import { formatearImporte, type Centimos } from '@/core/domain/importe';
 import { MARCA } from '@/core/domain/site';
 import type {
   PropuestaPayload,
@@ -36,27 +36,37 @@ function escribirSimulaciones(simulaciones: SimulacionGuardada[]): RespuestaApi 
   }
 }
 
+function importeEnTexto(centimos: Centimos | null): string {
+  return centimos === null ? 'presupuesto personalizado' : formatearImporte(centimos);
+}
+
 function cuerpoPropuesta(payload: PropuestaPayload): string {
-  const lineas = payload.desglose
-    .filter((linea) => !linea.desmarcado)
-    .map(
-      (linea) =>
-        `- ${linea.etiqueta} (${linea.detalle}): ${
-          linea.presupuesto ? 'a presupuestar' : formatearImporte(linea.importe)
-        }`,
-    );
+  const desglose = payload.desglose.map(
+    (linea) =>
+      `- ${linea.etiqueta} (${linea.detalle}): ${
+        linea.importe === null ? 'a presupuestar' : formatearImporte(linea.importe)
+      }`,
+  );
+  if (payload.descuento_pack !== null) {
+    desglose.push(`- Descuento pack laboral + jurídico: −${formatearImporte(payload.descuento_pack)}`);
+  }
+
+  const totales = [
+    `Cuota mensual: ${importeEnTexto(payload.cuota_mensual)}`,
+    `Primer mes: ${importeEnTexto(payload.primer_mes)}`,
+  ];
+  if (payload.presupuesto_fiscal) {
+    totales.push('Quiero también el presupuesto de asesoría fiscal y contabilidad.');
+  }
 
   return [
     `Hola, soy ${payload.email} y me gustaría recibir esta propuesta:`,
     '',
-    `Forma jurídica: ${payload.forma_juridica === 'autonomo' ? 'Autónomo' : 'Sociedad'}`,
     `Trabajadores: ${payload.num_trabajadores}`,
-    `Facturas al mes: ${payload.num_facturas}`,
     '',
-    ...lineas,
+    ...desglose,
     '',
-    `Primer mes: ${formatearImporte(payload.total_primer_mes)}`,
-    `Cuota recurrente: ${formatearImporte(payload.total_recurrente)}/mes`,
+    ...totales,
   ].join('\n');
 }
 
