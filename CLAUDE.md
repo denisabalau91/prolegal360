@@ -32,10 +32,14 @@ de `core/ports`. Prohibido añadir `fetch` a APIs propias o fuera de la capa de 
 - **Variables** (ver `.env.example`; en CI se leen de *GitHub → Settings → Secrets and
   variables → Actions → Variables*, no de *Secrets*):
   - `NEXT_PUBLIC_FORMS_ENDPOINT`: URL del servicio (`https://api.web3forms.com/submit`).
-  - `NEXT_PUBLIC_FORMS_KEY`: access key de Web3Forms.
-  - `NEXT_PUBLIC_FORMS_CC`: copia (CC) opcional; en Web3Forms se envía como `ccemail`.
-- **Sin endpoint configurado**, el respaldo es abrir `mailto:` hacia `MARCA.email`
-  (con CC si existe), generado solo con `urlMailto()` de `formularios-web.ts`.
+  - `NEXT_PUBLIC_FORMS_KEY`: access keys de Web3Forms separadas por comas. Cada key entrega
+    en **un solo email** (el vinculado a ese formulario en el panel de Web3Forms; el código
+    no fija destinatarios), así que para varios destinatarios hay una key por email y la
+    web envía una vez por key. Consume una petición por key del cupo mensual.
+  - Prohibido usar `ccemail` u otras opciones Pro de Web3Forms con el plan Free: el
+    servicio rechaza **todos** los envíos con 400.
+- **Sin endpoint configurado**, el respaldo es abrir `mailto:` hacia `MARCA.email`,
+  generado solo con `urlMailto()` de `formularios-web.ts`.
 - **Todos los formularios pasan por ahí**: contacto, cambiar de asesoría, alta, propuesta
   de la calculadora, presupuesto fiscal, subvenciones, presupuesto de fincas y checklist
   de recursos. Los formularios nuevos deben componer `FormularioSolicitud` (hook
