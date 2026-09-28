@@ -23,6 +23,21 @@ export function urlMailto(destinatario: string, asunto: string, cuerpo: string):
   return `mailto:${destinatario}?${parametros.join('&')}`;
 }
 
+async function motivoDelServicio(respuesta: Response): Promise<string> {
+  const texto = await respuesta.text();
+  try {
+    const cuerpo: unknown = JSON.parse(texto);
+    if (cuerpo && typeof cuerpo === 'object' && 'message' in cuerpo) {
+      return String(cuerpo.message);
+    }
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) {
+      throw error;
+    }
+  }
+  return texto.slice(0, 200);
+}
+
 export async function enviarFormulario(
   datos: Record<string, unknown>,
 ): Promise<RespuestaApi> {
@@ -44,7 +59,11 @@ export async function enviarFormulario(
       body: JSON.stringify(cuerpo),
     });
     if (!respuesta.ok) {
-      return { ok: false, error: `El servicio respondió ${respuesta.status}` };
+      const motivo = await motivoDelServicio(respuesta);
+      return {
+        ok: false,
+        error: `El servicio respondió ${respuesta.status}${motivo ? `: ${motivo}` : ''}`,
+      };
     }
     return { ok: true };
   } catch (error) {
